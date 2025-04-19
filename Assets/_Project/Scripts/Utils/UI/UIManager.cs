@@ -5,6 +5,8 @@ using Michsky.MUIP;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using System;
 
 namespace Rabah.Utils.UI
 {
@@ -118,7 +120,7 @@ namespace Rabah.Utils.UI
                 CurrentScreen.SetupLayout();
                 CurrentScreen.ControlScreenMainContent(false);
                 canvas.renderMode = screenInstance.RenderMode;
-                screenTitleTMP_Text.text = CurrentScreen.Title;
+                screenTitleTMP_Text.text = CurrentScreen.ScreenSetupData.title;
                 if (useFadeAnimation)
                 {
                     CurrentScreen.FadeInScreenContent(() =>
@@ -223,13 +225,44 @@ namespace Rabah.Utils.UI
 
         public void ShowComingSoonModal()
         {
-            ShowNotificationModal("Coming Soon", "This feature is not available yet.");
+            ShowNotificationModal(
+                title: "Coming Soon",
+                descriptionText: "This feature is not available yet.",
+                icon: null);
         }
 
-        public void ShowNotificationModal(string title, string descriptionText)
+        public void ShowNotificationModal(string title, string descriptionText, Sprite icon, bool isConfirmButton = false, Action okConfirmAction = null)
         {
+
+            if (isConfirmButton)
+            {
+                notificationModalViewManager.showConfirmButton = isConfirmButton;
+                notificationModalViewManager.closeOnConfirm = true;
+                notificationModalViewManager.closeOnCancel = true;
+                notificationModalViewManager.confirmButton.onClick.RemoveAllListeners();
+                notificationModalViewManager.confirmButton.onClick.AddListener(() =>
+                {
+                    okConfirmAction?.Invoke();
+                });
+            }
+            else
+            {
+                notificationModalViewManager.cancelButton.onClick.RemoveAllListeners();
+                notificationModalViewManager.closeOnCancel = true;
+            }
             notificationModalViewManager.titleText = title;
             notificationModalViewManager.descriptionText = descriptionText;
+
+
+            if (icon == null)
+            {
+                notificationModalViewManager.windowIcon.gameObject.SetActive(false);
+            }
+            else
+            {
+                notificationModalViewManager.windowIcon.gameObject.SetActive(true);
+                notificationModalViewManager.icon = icon;
+            }
             notificationModalViewManager.UpdateUI();
             notificationModalViewManager.OpenWindow();
         }

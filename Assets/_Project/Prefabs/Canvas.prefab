@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.12156863, g: 0.14117648, b: 0.16862746, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3417,8 +3417,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 0}
-  m_SizeDelta: {x: 100, y: 42}
+  m_AnchoredPosition: {x: 81.5, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3427779391418820724
 CanvasRenderer:
@@ -3448,7 +3448,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 80446df71d1bfe347bdaf2832170a76a, type: 3}
+  m_Sprite: {fileID: -769146518, guid: 7ed526f5bbef34fe4a9e2e1883cc3c96, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3465,7 +3465,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4464983610381360481}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a9d2f9067277ade4e9b47012ea4d9e17, type: 3}
   m_Name: 
@@ -3517,7 +3517,7 @@ GameObject:
   - component: {fileID: 7638731113356844645}
   - component: {fileID: 4083703247075598009}
   m_Layer: 5
-  m_Name: Chnageable Background
+  m_Name: Screens Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3537,10 +3537,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 110111818096610767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.025, y: 0.09}
+  m_AnchorMax: {x: 0.975, y: 0.85}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: -324}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7638731113356844645
 CanvasRenderer:
@@ -3563,7 +3563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.17254902, g: 0.19607843, b: 0.24313726, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.92156863}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3935,6 +3935,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2949919044798580855}
+  - component: {fileID: 1474044845992732657}
+  - component: {fileID: 222776898591122586}
   m_Layer: 5
   m_Name: Top Panel
   m_TagString: Untagged
@@ -3965,6 +3967,44 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!222 &1474044845992732657
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5089873146855978943}
+  m_CullTransparentMesh: 1
+--- !u!114 &222776898591122586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5089873146855978943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.92156863}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5271616213310773024
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,7 +4130,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1598.005, y: -81}
+  m_AnchoredPosition: {x: 1598.005, y: -48.600006}
   m_SizeDelta: {x: 205.6, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678226086780375178
@@ -4326,7 +4366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 322.075, y: -81}
+  m_AnchoredPosition: {x: 322.075, y: -48.600006}
   m_SizeDelta: {x: 205.76001, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4232560641978232395
@@ -4667,7 +4707,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 960.08, y: -81}
+  m_AnchoredPosition: {x: 960.08, y: -48.600006}
   m_SizeDelta: {x: 193.47, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2603378530536848964
@@ -5092,7 +5132,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8551043069667009914}
-  - {fileID: 3441050584084858165}
   - {fileID: 4852792557151360973}
   - {fileID: 6982158049150270702}
   - {fileID: 5693872892829759922}
@@ -5188,7 +5227,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   windowsParent: {fileID: 3223544353978957498}
-  screenPrefabs: []
+  screenPrefabs:
+  - handle: 1
+    prefab: {fileID: 6858961048573168970, guid: 9a54e68b03f0942e680eb7e3a96e1599, type: 3}
+  - handle: 2
+    prefab: {fileID: 6143357325917351848, guid: 118968e80994d47c1a117f0c8e0184db, type: 3}
+  - handle: 3
+    prefab: {fileID: 5607419596119266738, guid: 50332661d0eea4fb893e9a4bcc6383ed, type: 3}
   backButton: {fileID: 9116886057717880879}
   resetButton: {fileID: 2603378530536848964}
   nextButton: {fileID: 3982850493722500203}
@@ -5197,8 +5242,11 @@ MonoBehaviour:
   loading: {fileID: 7577274274250741259}
   screenTitleTMP_Text: {fileID: 2427457551773183577}
   mainBackground: {fileID: 7375068370347772594}
-  changeableBackground: {fileID: 4083703247075598009}
-  changeableBackgroundSprites: []
+  changeableBackground: {fileID: 7375068370347772594}
+  changeableBackgroundSprites:
+  - {fileID: 210912594, guid: b30d57fce67ec4b03bf1cec2ff61431b, type: 3}
+  - {fileID: -1937992746, guid: 1237a4f6fbec04ed8b8e5c5ea025bf0f, type: 3}
+  - {fileID: 1104352866, guid: 559f3fb7bde8449fd90e2b2d9115542c, type: 3}
   topPanel: {fileID: 5089873146855978943}
   bottomPanel: {fileID: 7747603860967115922}
   notificationModalViewManager: {fileID: 8260842111046240374}
@@ -6421,7 +6469,7 @@ RectTransform:
   m_Father: {fileID: 110111818096610767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0.15}
+  m_AnchorMax: {x: 1, y: 0.09}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0}
@@ -6451,142 +6499,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &7878921064962326936
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3441050584084858165}
-  - component: {fileID: 533187476068299418}
-  m_Layer: 0
-  m_Name: Window Manager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3441050584084858165
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7878921064962326936}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 110111818096610767}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &533187476068299418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7878921064962326936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71a9c3d7f141d6240b6653d5c02f9462, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  windows:
-  - windowName: Button
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Chart
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Context Menu
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Dropdown
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Horizontal Selector
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Icon
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Input Field
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: List View
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Modal Window
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Movable Window
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Notification
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Progress Bar
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Slider
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Spinner
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Switch
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Toggle
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Tooltip
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  - windowName: Window Manager
-    windowObject: {fileID: 0}
-    buttonObject: {fileID: 0}
-    firstSelected: {fileID: 0}
-  currentWindowIndex: 0
-  cullWindows: 1
-  initializeButtons: 0
-  onWindowChange:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: SetWindowManagerButton
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  altMode: 1
 --- !u!1 &7936809526955053961
 GameObject:
   m_ObjectHideFlags: 0
@@ -7098,15 +7010,15 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8772720089173243860}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 110111818096610767}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.15}
-  m_AnchorMax: {x: 1, y: 0.85}
+  m_AnchorMin: {x: 0.025, y: 0.09}
+  m_AnchorMax: {x: 0.975, y: 0.85}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -7252,7 +7164,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1296843433217048, guid: 46c25b00d174c7e469f9ac0e0f8308cc, type: 3}
       propertyPath: m_Name
-      value: Fading Notification BL
+      value: Fading Notification BL With Ok And Close
       objectReference: {fileID: 0}
     - target: {fileID: 114210441682419654, guid: 46c25b00d174c7e469f9ac0e0f8308cc, type: 3}
       propertyPath: m_inputSource
@@ -8905,6 +8817,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8695184825799817655}
     m_Modifications:
+    - target: {fileID: 1817116028641932, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
+      propertyPath: m_Name
+      value: Main Notification Modal Windows
+      objectReference: {fileID: 0}
     - target: {fileID: 114026648422823080, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
       propertyPath: m_Sprite
       value: 

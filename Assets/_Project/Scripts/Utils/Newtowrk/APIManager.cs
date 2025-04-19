@@ -10,8 +10,12 @@ namespace Rabah.Utils.Network
     {
         [SerializeField]
         private NetworkData networkData;
+        [SerializeField]
+        private MockUserDatabase mockUserDatabase;
         public event Action<UnityWebRequest> OnRequestSent;
         private string baseUrl = "";
+
+        public MockUserDatabase MockUserDatabase { get => mockUserDatabase; private set => mockUserDatabase = value; }
 
         public void Get<T>(string endpoint, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false)
         {

@@ -11,19 +11,38 @@ namespace Rabah.Utils.UI
         [SerializeField]
         private ScreenHandle next;
         [SerializeField]
-        private string title;
-        [SerializeField]
         private GameObject screenMainContent;
         [SerializeField]
         private RenderMode renderMode;
+        [SerializeField]
+        private ScreenSetupDataSO screenSetupData;
 
         public ScreenHandle Previous { get => previous; protected set => previous = value; }
         public ScreenHandle Next { get => next; protected set => next = value; }
-        public string Title { get => title; protected set => title = value; }
         public RenderMode RenderMode { get => renderMode; private set => renderMode = value; }
         public GameObject ScreenMainContent { get => screenMainContent; protected set => screenMainContent = value; }
+        public ScreenSetupDataSO ScreenSetupData { get => screenSetupData; private set => screenSetupData = value; }
 
-        public abstract void SetupLayout();
+        public virtual void SetupLayout()
+        {
+            if (ScreenSetupData == null) { Debug.LogError("ScreenSetupData is NOT assigned!!"); return; }
+            renderMode = ScreenSetupData.renderMode;
+            ScreenMainContent.SetActive(false);
+            // if (ScreenSetupData.isFullScreen)
+            // {
+            //     ScreenMainContent.GetComponent<RectTransform>().sizeDelta = new Vector2(ScreenSetupData.screenWidth, ScreenSetupData.screenHeight);
+            // }
+            // else
+            // {
+            //     ScreenMainContent.GetComponent<RectTransform>().sizeDelta = new Vector2(ScreenSetupData.screenWidth * ScreenSetupData.screenScale, ScreenSetupData.screenHeight * ScreenSetupData.screenScale);
+            // }
+            ScreenMainContent.GetComponent<RectTransform>().localScale = new Vector3(ScreenSetupData.screenScale, ScreenSetupData.screenScale, 1);
+            UIManager.Instance.ControlBackButton(ScreenSetupData.hasBackButton);
+            UIManager.Instance.ControlResetButton(ScreenSetupData.hasResetButton);
+            UIManager.Instance.ControlNextButton(ScreenSetupData.hasNextButton);
+            UIManager.Instance.ControlBottomPanel(ScreenSetupData.hasBottomPanel);
+            UIManager.Instance.ControlTopPanel(ScreenSetupData.hasTopPanel);
+        }
         public virtual void OnOpen(ScreenData data) { }
         public virtual void OnClose() { }
         public virtual void OnReset()

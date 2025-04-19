@@ -24,7 +24,8 @@ namespace Rabah.Scenes.Definitions.UI
             {
                 Utils.UI.UIManager.Instance.ShowNotificationModal(
                     "Missing Data",
-                    "To go to next steps you must have at least one element in each Definition"
+                    "To go to next steps you must have at least one element in each Definition",
+                    null
                 );
             }
         }
