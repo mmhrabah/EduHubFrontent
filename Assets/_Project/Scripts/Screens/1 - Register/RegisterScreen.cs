@@ -5,6 +5,7 @@ using Rabah.UI.MainComponents;
 using UIManager = Rabah.Utils.UI.UIManager;
 using Rabah.Utils.Network;
 using System.Net;
+using System;
 
 
 namespace Rabah.Screens
@@ -100,24 +101,24 @@ namespace Rabah.Screens
 
         private System.Collections.IEnumerator FakeRegister()
         {
-            yield return new WaitForSeconds(0.8f);
+            UIManager.Instance.ShowLoading();
+            yield return new WaitForSeconds(2.8f);
             RegisterDataModelRequest data = ExtractDataFromInputs(UIElementsInputs);
             User user = new User
             {
-                Id = data.Id,
+                Id = data.Id.ToString(),
                 Username = data.Username,
                 Password = data.Password
             };
-            UIManager.Instance.ShowLoading();
             var registeredInUser = APIManager.Instance.MockUserDatabase.AddUser(user);
-            if (registeredInUser.StatusCode == (int)HttpStatusCode.OK)
+            if (registeredInUser.StatusCode == (int)HttpStatusCode.Created)
             {
                 ResponseModel<RegisterResponse> registerationData = new()
                 {
                     StatusCode = registeredInUser.StatusCode,
                     Data = new RegisterResponse
                     {
-                        Id = registeredInUser.Data.Id,
+                        Id = Guid.Parse(registeredInUser.Data.Id),
                         Username = registeredInUser.Data.Username,
                         Password = registeredInUser.Data.Password
                     }

@@ -15,9 +15,10 @@ public class MockUserDatabase : ScriptableObject
     {
         for (int i = 0; i < Users.Count; i++)
         {
-            if (!UserDictionary.ContainsKey(Users[i].Id))
+            Guid guid = Guid.Parse(Users[i].Id);
+            if (!UserDictionary.ContainsKey(guid))
             {
-                UserDictionary.Add(Users[i].Id, Users[i]);
+                UserDictionary.Add(guid, Users[i]);
             }
         }
     }
@@ -28,9 +29,10 @@ public class MockUserDatabase : ScriptableObject
         if (existingUser == null)
         // Add the new user to the list and dictionary
         {
-            user.Id = Guid.NewGuid();
+            user.Id = Guid.NewGuid().ToString();
             Users.Add(user);
-            UserDictionary.Add(user.Id, user);
+            Guid guid = Guid.Parse(user.Id);
+            UserDictionary.Add(guid, user);
             return new ResponseModel<User>
             {
                 StatusCode = (int)HttpStatusCode.Created,
@@ -64,21 +66,21 @@ public class MockUserDatabase : ScriptableObject
 
     public ResponseModel<User> Login(string username, string password)
     {
-        foreach (var user in Users)
+        var existingUser = Users.Find(u => u.Username == username && u.Password == password);
+
+        if (existingUser == null)
         {
-            if (user.Username == username && user.Password == password)
+            return new ResponseModel<User>
             {
-                return new ResponseModel<User>
-                {
-                    StatusCode = (int)HttpStatusCode.OK,
-                    Data = user
-                };
-            }
+                StatusCode = (int)HttpStatusCode.Unauthorized,
+                Data = null
+            };
         }
+
         return new ResponseModel<User>
         {
-            StatusCode = (int)HttpStatusCode.Unauthorized,
-            Data = null
+            StatusCode = (int)HttpStatusCode.OK,
+            Data = existingUser
         };
     }
 }

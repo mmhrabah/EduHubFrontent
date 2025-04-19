@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public class User
 {
-    public Guid Id;
+    public string Id;
     public string Username;
     public string Password;
     public string Email;

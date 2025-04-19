@@ -12,10 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7963f6947385f4c918b02c673a941517, type: 3}
   m_Name: MockUserDatabase
   m_EditorClassIdentifier: 
-  Users:
-  - Username: Mhamoud
-    Password: password
-    Email: 
-    PhoneNumber: 
-    Address: 
-    ProfilePictureUrl: 
+  Users: []

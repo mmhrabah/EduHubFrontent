@@ -6,6 +6,7 @@ using Rabah.UI.MainComponents;
 using UIManager = Rabah.Utils.UI.UIManager;
 using Rabah.Utils.Network;
 using System.Net;
+using System;
 
 
 namespace Rabah.Screens
@@ -107,9 +108,9 @@ namespace Rabah.Screens
 
         private System.Collections.IEnumerator FakeLogin()
         {
-            yield return new WaitForSeconds(0.8f);
-            LoginDataModelRequest data = ExtractDataFromInputs(UIElementsInputs);
             UIManager.Instance.ShowLoading();
+            yield return new WaitForSeconds(2.8f);
+            LoginDataModelRequest data = ExtractDataFromInputs(UIElementsInputs);
             var loggedInUser = APIManager.Instance.MockUserDatabase.Login(data.Username, data.Password);
             if (loggedInUser.StatusCode == (int)HttpStatusCode.OK)
             {
@@ -118,7 +119,7 @@ namespace Rabah.Screens
                     StatusCode = loggedInUser.StatusCode,
                     Data = new LoginResponse
                     {
-                        Id = loggedInUser.Data.Id,
+                        Id = Guid.Parse(loggedInUser.Data.Id),
                         Username = loggedInUser.Data.Username,
                         Password = loggedInUser.Data.Password
                     }
