@@ -17,7 +17,7 @@ namespace Rabah.Utils.UI
 
         [Header("UI Elements")]
         [SerializeField]
-        private List<UIElement> uIElementsInputs = new();
+        protected List<UIElement> uIElementsInputs = new();
 
         protected Action<UIElement> onInputHasInvalidData;
         protected Action<ResponseModel<S>> onResponseReceived;
@@ -40,7 +40,7 @@ namespace Rabah.Utils.UI
         {
             if (IsScreenDataValid())
             {
-                T data = ExtractDataFromInputs(UIElementsInputs);
+                T data = ExtractDataFromInputs();
                 APIManager.Instance.Post<Y>(ScreenSetupData.mainEndpoint, data,
                 (response) =>
                 {
@@ -65,7 +65,7 @@ namespace Rabah.Utils.UI
             }
         }
 
-        protected abstract T ExtractDataFromInputs(List<UIElement> uIElementsInputs);
+        protected abstract T ExtractDataFromInputs();
         protected abstract void FillUIElementsInputs();
 
         public override bool IsScreenDataValid()

@@ -10,12 +10,9 @@ namespace Rabah.Utils.Network
     {
         [SerializeField]
         private NetworkData networkData;
-        [SerializeField]
-        private MockUserDatabase mockUserDatabase;
         public event Action<UnityWebRequest> OnRequestSent;
         private string baseUrl = "";
 
-        public MockUserDatabase MockUserDatabase { get => mockUserDatabase; private set => mockUserDatabase = value; }
 
         public void Get<T>(string endpoint, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false)
         {
@@ -36,7 +33,7 @@ namespace Rabah.Utils.Network
                 );
         }
 
-        public void Post<T>(string endpoint, object data, Action<T> onSuccess, Action<string> onFailure, Action onSend = null)
+        public void Post<T>(string endpoint, object data, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false)
         {
             baseUrl = networkData.baseURL;
             string jsonData = JsonConvert.SerializeObject(data);
@@ -80,7 +77,7 @@ namespace Rabah.Utils.Network
             );
         }
 
-        public void Delete<T>(string endpoint, Action<T> onSuccess, Action<string> onFailure, Action onSend = null)
+        public void Delete<T>(string endpoint, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false)
         {
             baseUrl = networkData.baseURL;
             UnityWebRequest request = UnityWebRequest.Delete(baseUrl + endpoint);

@@ -6,6 +6,7 @@ using UIManager = Rabah.Utils.UI.UIManager;
 using Rabah.Utils.Network;
 using System.Net;
 using System;
+using Rabah.GeneralDataModel;
 
 
 namespace Rabah.Screens
@@ -20,15 +21,14 @@ namespace Rabah.Screens
         [SerializeField]
         private InputFieldUIElement passwordInputField;
         [SerializeField]
+        private InputFieldUIElement emailInputField;
+        [SerializeField]
         private Sprite warningIcon;
 
 
         protected override void Awake()
         {
             base.Awake();
-            // Initialize the mock user database For testing purposes
-            APIManager.Instance.MockUserDatabase.FillUserDictionary();
-            /////////////////////////////////////////////////////////
             onResponseReceived += (response) =>
             {
                 // Handle successful registration
@@ -37,7 +37,15 @@ namespace Rabah.Screens
                     handle: ScreenHandle.MainScreen
                     , data: new MainScreenData
                     {
-                        User = APIManager.Instance.MockUserDatabase.GetUser(response.Data.Id).Data
+                        User =
+                        new User
+                        {
+                            Id = response.Data.Id,
+                            Username = response.Data.Username,
+                            Email = response.Data.Email,
+                            ProfilePictureUrl = response.Data.ProfilePictureUrl,
+                            AccessToken = response.Data.AccessToken
+                        }
                     });
             };
             onErrorReceived += (error) =>
@@ -46,7 +54,7 @@ namespace Rabah.Screens
                     Debug.LogError("Network error: " + error);
                     UIManager.Instance.ShowNotificationModal(
                         title: "Registration Failed",
-                        descriptionText: "Username is already exists.",
+                        descriptionText: error.ToString(),
                         icon: warningIcon);
                 };
         }
@@ -61,7 +69,7 @@ namespace Rabah.Screens
             base.OnOpen(data);
         }
 
-        protected override RegisterDataModelRequest ExtractDataFromInputs(List<UIElement> uIElementsInputs)
+        protected override RegisterDataModelRequest ExtractDataFromInputs()
         {
             RegisterDataModelRequest registrationData = new();
 
@@ -77,6 +85,10 @@ namespace Rabah.Screens
                     {
                         registrationData.Password = inputField.InputField.text;
                     }
+                    else if (inputField == emailInputField)
+                    {
+                        registrationData.Email = inputField.InputField.text;
+                    }
                 }
             }
 
@@ -91,45 +103,29 @@ namespace Rabah.Screens
 
         protected override void OnSendButtonClicked()
         {
-            // Fake registaration for testing purposes
-            if (IsScreenDataValid())
-            {
-                StartCoroutine(FakeRegister());
-            }
-            /////////////////////////////////////
+            Register();
         }
 
-        private System.Collections.IEnumerator FakeRegister()
+        private void Register()
         {
-            UIManager.Instance.ShowLoading();
-            yield return new WaitForSeconds(2.8f);
-            RegisterDataModelRequest data = ExtractDataFromInputs(UIElementsInputs);
-            User user = new User
+            if (IsScreenDataValid())
             {
-                Id = data.Id.ToString(),
-                Username = data.Username,
-                Password = data.Password
-            };
-            var registeredInUser = APIManager.Instance.MockUserDatabase.AddUser(user);
-            if (registeredInUser.StatusCode == (int)HttpStatusCode.Created)
-            {
-                ResponseModel<RegisterResponse> registerationData = new()
-                {
-                    StatusCode = registeredInUser.StatusCode,
-                    Data = new RegisterResponse
+                UIManager.Instance.ShowLoading();
+                RegisterDataModelRequest data = ExtractDataFromInputs();
+                APIManager.Instance.Post<ResponseModel<RegisterResponse>>(
+                    endpoint: ScreenSetupData.mainEndpoint,
+                    data,
+                    (response) =>
                     {
-                        Id = Guid.Parse(registeredInUser.Data.Id),
-                        Username = registeredInUser.Data.Username,
-                        Password = registeredInUser.Data.Password
+                        onResponseReceived?.Invoke(response);
+                        UIManager.Instance.HideLoading();
+                    },
+                    (error) =>
+                    {
+                        onErrorReceived?.Invoke(error);
+                        UIManager.Instance.HideLoading();
                     }
-                };
-                onResponseReceived?.Invoke(registerationData);
-                UIManager.Instance.HideLoading();
-            }
-            else
-            {
-                onErrorReceived?.Invoke("Registration failed");
-                UIManager.Instance.HideLoading();
+                );
             }
         }
     }

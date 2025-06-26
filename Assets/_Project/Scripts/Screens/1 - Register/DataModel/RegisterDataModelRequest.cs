@@ -8,5 +8,6 @@ namespace Rabah.Screens
         public Guid Id;
         public string Username;
         public string Password;
+        public string Email;
     }
 }

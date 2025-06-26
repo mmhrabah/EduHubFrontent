@@ -6,7 +6,8 @@ using Rabah.UI.MainComponents;
 using UIManager = Rabah.Utils.UI.UIManager;
 using Rabah.Utils.Network;
 using System.Net;
-using System;
+using Rabah.Utils.Session;
+using Rabah.GeneralDataModel;
 
 
 namespace Rabah.Screens
@@ -17,7 +18,7 @@ namespace Rabah.Screens
     public class LoginScreen : ScreenSendDataToDatabase<LoginDataModelRequest, ResponseModel<LoginResponse>, LoginResponse>
     {
         [SerializeField]
-        private InputFieldUIElement usernameInputField;
+        private InputFieldUIElement emailInputField;
         [SerializeField]
         private InputFieldUIElement passwordInputField;
         [SerializeField]
@@ -29,9 +30,6 @@ namespace Rabah.Screens
         protected override void Awake()
         {
             base.Awake();
-            // Initialize the mock user database For testing purposes
-            APIManager.Instance.MockUserDatabase.FillUserDictionary();
-            /////////////////////////////////////////////////////////
             regitserButton.onClick.AddListener(() =>
             {
                 UIManager.Instance.OpenScreen(ScreenHandle.RegisterScreen);
@@ -44,8 +42,25 @@ namespace Rabah.Screens
                     handle: ScreenHandle.MainScreen,
                     data: new MainScreenData
                     {
-                        User = APIManager.Instance.MockUserDatabase.GetUser(response.Data.Id).Data
+                        User = new()
+                        {
+                            Id = response.Data.Id,
+                            Username = response.Data.Username,
+                        }
                     });
+
+                Session.User = new()
+                {
+                    Id = response.Data.Id,
+                    Username = response.Data.Username,
+                    Email = response.Data.Email,
+                    PhoneNumber = response.Data.PhoneNumber,
+                    DateOfBirth = response.Data.DateOfBirth,
+                    ProfilePictureUrl = response.Data.ProfilePictureUrl,
+                    AccessToken = response.Data.AccessToken
+                };
+                Session.AccessToken = Session.User.AccessToken;
+                // Session.RefreshToken = response.Data.data.refreshToken;
             };
             onErrorReceived += (error) =>
                 {
@@ -68,70 +83,52 @@ namespace Rabah.Screens
             base.OnOpen(data);
         }
 
-        protected override LoginDataModelRequest ExtractDataFromInputs(List<UIElement> uIElementsInputs)
+        protected override LoginDataModelRequest ExtractDataFromInputs()
         {
-            LoginDataModelRequest loginData = new LoginDataModelRequest();
-
-            foreach (var element in uIElementsInputs)
-            {
-                if (element is InputFieldUIElement inputField)
-                {
-                    if (inputField == usernameInputField)
-                    {
-                        loginData.Username = inputField.InputField.text;
-                    }
-                    else if (inputField == passwordInputField)
-                    {
-                        loginData.Password = inputField.InputField.text;
-                    }
-                }
-            }
-
+            LoginDataModelRequest loginData = new();
+            string password = passwordInputField.GetElementDataClassType<string>();
+            byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
+            string base64Password = System.Convert.ToBase64String(passwordBytes);
+            loginData.Password = base64Password;
             return loginData;
         }
 
         protected override void FillUIElementsInputs()
         {
-            UIElementsInputs.Add(usernameInputField);
+            UIElementsInputs.Add(emailInputField);
             UIElementsInputs.Add(passwordInputField);
         }
 
         protected override void OnSendButtonClicked()
         {
-            // Fake login for testing purposes
             if (IsScreenDataValid())
             {
-                StartCoroutine(FakeLogin());
+                Login();
             }
-            /////////////////////////////////////
         }
 
-        private System.Collections.IEnumerator FakeLogin()
+        private void Login()
         {
             UIManager.Instance.ShowLoading();
-            yield return new WaitForSeconds(2.8f);
-            LoginDataModelRequest data = ExtractDataFromInputs(UIElementsInputs);
-            var loggedInUser = APIManager.Instance.MockUserDatabase.Login(data.Username, data.Password);
-            if (loggedInUser.StatusCode == (int)HttpStatusCode.OK)
-            {
-                ResponseModel<LoginResponse> loginData = new()
+            LoginDataModelRequest data = ExtractDataFromInputs();
+            APIManager.Instance.Post<ResponseModel<LoginResponse>>(
+                endpoint: ScreenSetupData.mainEndpoint,
+                data,
+                (response) =>
                 {
-                    StatusCode = loggedInUser.StatusCode,
-                    Data = new LoginResponse
+                    ResponseModel<LoginResponse> loginData = new()
                     {
-                        Id = Guid.Parse(loggedInUser.Data.Id),
-                        Username = loggedInUser.Data.Username,
-                        Password = loggedInUser.Data.Password
-                    }
-                };
-                onResponseReceived?.Invoke(loginData);
-                UIManager.Instance.HideLoading();
-            }
-            else
-            {
-                onErrorReceived?.Invoke("Login failed");
-                UIManager.Instance.HideLoading();
-            }
+                        StatusCode = response.StatusCode,
+                        Data = response.Data
+                    };
+                },
+                (error) =>
+                {
+                    onErrorReceived?.Invoke(error);
+                    UIManager.Instance.HideLoading();
+                },
+                fixResponse: true
+            );
         }
     }
 }
