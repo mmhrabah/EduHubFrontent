@@ -56,7 +56,9 @@ namespace Rabah.Utils.UI
                 {
                     // Handle send action if needed
                     UIManager.Instance.ShowLoading();
-                });
+                },
+                fixResponse: ScreenSetupData.fixedResponse
+                );
             }
             else
             {

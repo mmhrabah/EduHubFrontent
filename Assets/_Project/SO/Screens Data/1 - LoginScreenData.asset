@@ -23,7 +23,9 @@ MonoBehaviour:
   hasResetButton: 0
   hasNextButton: 0
   hasBottomPanel: 0
+  hasLeftPanel: 0
   hasTopPanel: 0
+  fixedResponse: 1
   renderMode: 0
   screenHandle: 1
-  mainEndpoint: Login
+  mainEndpoint: auth/login

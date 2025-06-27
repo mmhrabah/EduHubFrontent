@@ -9739,6 +9739,7 @@ MonoBehaviour:
   topPanel: {fileID: 5089873146855978943}
   bottomPanel: {fileID: 7747603860967115922}
   leftPanel: {fileID: 4833032125222631673}
+  leftPanelButtonsManager: {fileID: 6399390038756358244}
   notificationModalViewManager: {fileID: 8260842111046240374}
   michskyUIManager: {fileID: 11400000, guid: 2a619a9609984be49b53b928dd94e61b, type: 2}
 --- !u!1 &6343600386242936330
@@ -16395,6 +16396,14 @@ PrefabInstance:
     - target: {fileID: 114799832416714900, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813538682097148, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114813538682097148, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
+      propertyPath: m_Color.g
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114898826336506840, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
       propertyPath: m_havePropertiesChanged

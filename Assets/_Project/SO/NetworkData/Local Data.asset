@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f32cb9d2fc9284dc4b044560e3432a74, type: 3}
   m_Name: Local Data
   m_EditorClassIdentifier: 
-  baseURL: 
+  baseURL: http://localhost:5154/api/

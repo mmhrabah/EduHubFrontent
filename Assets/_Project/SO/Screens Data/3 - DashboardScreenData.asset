@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e6ae3164da72a4d43b8f72ace75385ac, type: 3}
-  m_Name: 3 - MainScreenData
+  m_Name: 3 - DashboardScreenData
   m_EditorClassIdentifier: 
   title: Dashboard
   isFullScreen: 1
@@ -22,8 +22,10 @@ MonoBehaviour:
   hasBackButton: 0
   hasResetButton: 0
   hasNextButton: 0
-  hasBottomPanel: 1
+  hasBottomPanel: 0
+  hasLeftPanel: 1
   hasTopPanel: 1
+  fixedResponse: 1
   renderMode: 0
   screenHandle: 3
   mainEndpoint: /Dashboard

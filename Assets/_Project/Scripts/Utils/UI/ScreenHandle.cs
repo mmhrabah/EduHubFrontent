@@ -5,6 +5,6 @@ namespace Rabah.Utils.UI
         None,
         LoginScreen,
         RegisterScreen,
-        MainScreen,
+        Dashboard,
     }
 }

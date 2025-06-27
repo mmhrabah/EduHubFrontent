@@ -34,8 +34,8 @@ namespace Rabah.Screens
                 // Handle successful registration
                 Debug.Log("Registeration successful");
                 UIManager.Instance.OpenScreen(
-                    handle: ScreenHandle.MainScreen
-                    , data: new MainScreenData
+                    handle: ScreenHandle.Dashboard
+                    , data: new DashboardScreenData
                     {
                         User =
                         new User

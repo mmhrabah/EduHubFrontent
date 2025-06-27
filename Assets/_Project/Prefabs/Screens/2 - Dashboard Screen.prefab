@@ -238,7 +238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8911886622107014803, guid: 228187799f05d42f6a197778ba066f77, type: 3}
       propertyPath: m_Name
-      value: 2 - Main Screen
+      value: 2 - Dashboard Screen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -270,17 +270,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4626763881605374890}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0c156531910240b2a68371ab93241ec, type: 3}
+  m_Script: {fileID: 11500000, guid: ca544a7acd89640d587629c46159422e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previous: 1
+  previous: 0
   next: 0
-  screenMainContent: {fileID: 9100630513001174570}
+  screenMainContent: {fileID: 7871962937963319889}
   renderMode: 0
   screenSetupData: {fileID: 11400000, guid: f340c87d213f04945b69b6b307221901, type: 2}
-  welcomeText: {fileID: 5739716489974291078}
---- !u!1 &9100630513001174570 stripped
+  warningIcon: {fileID: 21300000, guid: 2a19aaadcf7844142a73ce60950ec353, type: 3}
+--- !u!1 &7871962937963319889 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5031400036794671891, guid: 228187799f05d42f6a197778ba066f77, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6243717530206381928, guid: 228187799f05d42f6a197778ba066f77, type: 3}
   m_PrefabInstance: {fileID: 4294446775819613497}
   m_PrefabAsset: {fileID: 0}

@@ -51,7 +51,8 @@ namespace Rabah.Utils.Network
                         T data = JsonConvert.DeserializeObject<T>(response);
                         onSuccess?.Invoke(data);
                     },
-                    onFailure
+                    onFailure,
+                    fixResponse
                     )
                 );
         }

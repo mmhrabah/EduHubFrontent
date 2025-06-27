@@ -3,57 +3,65 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ButtonSelectManager : MonoBehaviour
+namespace Rabah.Utils.UI
 {
-    [SerializeField]
-    private ButtonManager[] buttons;
-
-    [SerializeField]
-    private Color selectedIconColor;
-    [SerializeField]
-    private Color selectedTextColor;
-    [SerializeField]
-    private Color selectedBGColor;
-
-    [SerializeField]
-    private Color unselectedIconColor;
-    [SerializeField]
-    private Color unselectedTextColor;
-    [SerializeField]
-    private Color unselectedBGColor;
-
-    private Image[] buttonBgImages;
-
-    private void Awake()
+    public class ButtonSelectManager : MonoBehaviour
     {
-        buttonBgImages = new Image[buttons.Length];
-        for (int i = 0; i < buttons.Length; i++)
+        [SerializeField]
+        private ButtonManager[] buttons;
+
+        [SerializeField]
+        private Color selectedIconColor;
+        [SerializeField]
+        private Color selectedTextColor;
+        [SerializeField]
+        private Color selectedBGColor;
+
+        [SerializeField]
+        private Color unselectedIconColor;
+        [SerializeField]
+        private Color unselectedTextColor;
+        [SerializeField]
+        private Color unselectedBGColor;
+
+        private Image[] buttonBgImages;
+        private int selectedButtonIndex = 0;
+
+        public int SelectedButtonIndex { get => selectedButtonIndex; private set => selectedButtonIndex = value; }
+
+        private void Awake()
         {
-            if (buttons[i].normalLayout.transform.childCount > 0)
+            buttonBgImages = new Image[buttons.Length];
+            for (int i = 0; i < buttons.Length; i++)
             {
-                buttonBgImages[i] = buttons[i].normalLayout.transform.GetChild(0).GetComponent<Image>();
+                if (buttons[i].normalLayout.transform.childCount > 0)
+                {
+                    buttonBgImages[i] = buttons[i].normalLayout.transform.GetChild(0).GetComponent<Image>();
+                }
             }
         }
-    }
-    public void SelectButton(int index)
-    {
-        for (int i = 0; i < buttons.Length; i++)
+
+        public void SelectButton(int index)
         {
-            if (i == index)
+            for (int i = 0; i < buttons.Length; i++)
             {
-                buttons[i].normalText.color = selectedTextColor;
-                buttons[i].normalImage.color = selectedIconColor;
-                buttonBgImages[i].enabled = true;
-                buttonBgImages[i].color = selectedBGColor;
-            }
-            else
-            {
-                buttons[i].normalText.color = unselectedTextColor;
-                buttons[i].normalImage.color = unselectedIconColor;
-                buttonBgImages[i].enabled = true;
-                buttonBgImages[i].color = unselectedBGColor;
+                if (i == index)
+                {
+                    buttons[i].normalText.color = selectedTextColor;
+                    buttons[i].normalImage.color = selectedIconColor;
+                    buttonBgImages[i].enabled = true;
+                    buttonBgImages[i].color = selectedBGColor;
+                    SelectedButtonIndex = i;
+                }
+                else
+                {
+                    buttons[i].normalText.color = unselectedTextColor;
+                    buttons[i].normalImage.color = unselectedIconColor;
+                    buttonBgImages[i].enabled = true;
+                    buttonBgImages[i].color = unselectedBGColor;
+                }
             }
         }
-    }
 
+    }
 }

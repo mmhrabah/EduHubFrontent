@@ -4,7 +4,7 @@ namespace Rabah.Screens
     using System.Collections.Generic;
 
     [Serializable]
-    public class MainScreenResponse : RequestModel
+    public class DashboardScreenResponse : RequestModel
     {
         public List<string> feeds;
         public List<string> notifications;

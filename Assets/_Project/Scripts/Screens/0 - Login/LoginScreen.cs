@@ -44,37 +44,27 @@ namespace Rabah.Screens
         protected override void Awake()
         {
             base.Awake();
-            regitserButton.onClick.AddListener(() =>
-            {
-                UIManager.Instance.OpenScreen(ScreenHandle.RegisterScreen);
-            });
+
             onResponseReceived += (response) =>
             {
                 // Handle successful login
                 Debug.Log("Login successful");
-                UIManager.Instance.OpenScreen(
-                    handle: ScreenHandle.MainScreen,
-                    data: new MainScreenData
-                    {
-                        User = new()
-                        {
-                            Id = response.Data.Id,
-                            Username = response.Data.Username,
-                        }
-                    });
 
-                Session.User = new()
-                {
-                    Id = response.Data.Id,
-                    Username = response.Data.Username,
-                    Email = response.Data.Email,
-                    PhoneNumber = response.Data.PhoneNumber,
-                    DateOfBirth = response.Data.DateOfBirth,
-                    ProfilePictureUrl = response.Data.ProfilePictureUrl,
-                    AccessToken = response.Data.AccessToken
-                };
-                Session.AccessToken = Session.User.AccessToken;
+                // Session.User = new()
+                // {
+                //     Id = response.Data.Id,
+                //     Username = response.Data.Username,
+                //     Email = response.Data.Email,
+                //     PhoneNumber = response.Data.PhoneNumber,
+                //     DateOfBirth = response.Data.DateOfBirth,
+                //     ProfilePictureUrl = response.Data.ProfilePictureUrl,
+                //     AccessToken = response.Data.AccessToken
+                // };
+                // Session.AccessToken = Session.User.AccessToken;
+                Session.AccessToken = response.Data.token;
                 // Session.RefreshToken = response.Data.data.refreshToken;
+                UIManager.Instance.OpenScreen(handle: ScreenHandle.Dashboard);
+
             };
             onErrorReceived += (error) =>
                 {
@@ -139,6 +129,7 @@ namespace Rabah.Screens
         protected override LoginDataModelRequest ExtractDataFromInputs()
         {
             LoginDataModelRequest loginData = new();
+            loginData.name = usernameInputField.GetElementDataClassType<string>();
             string password = passwordInputField.GetElementDataClassType<string>();
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes(password);
             string base64Password = System.Convert.ToBase64String(passwordBytes);
@@ -150,38 +141,6 @@ namespace Rabah.Screens
         {
             UIElementsInputs.Add(usernameInputField);
             UIElementsInputs.Add(passwordInputField);
-        }
-
-        protected override void OnSendButtonClicked()
-        {
-            if (IsScreenDataValid())
-            {
-                Login();
-            }
-        }
-
-        private void Login()
-        {
-            UIManager.Instance.ShowLoading();
-            LoginDataModelRequest data = ExtractDataFromInputs();
-            APIManager.Instance.Post<ResponseModel<LoginResponse>>(
-                endpoint: ScreenSetupData.mainEndpoint,
-                data,
-                (response) =>
-                {
-                    ResponseModel<LoginResponse> loginData = new()
-                    {
-                        StatusCode = response.StatusCode,
-                        Data = response.Data
-                    };
-                },
-                (error) =>
-                {
-                    onErrorReceived?.Invoke(error);
-                    UIManager.Instance.HideLoading();
-                },
-                fixResponse: true
-            );
         }
 
         public override void SetupLayout()

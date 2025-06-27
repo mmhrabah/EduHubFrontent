@@ -18,6 +18,7 @@ public class ScreenSetupDataSO : ScriptableObject
     public bool hasBottomPanel;
     public bool hasLeftPanel;
     public bool hasTopPanel;
+    public bool fixedResponse;
     public RenderMode renderMode;
     public ScreenHandle screenHandle;
     public string mainEndpoint;

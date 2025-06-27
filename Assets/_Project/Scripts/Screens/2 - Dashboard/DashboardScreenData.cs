@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Rabah.Screens
 {
-    public class MainScreenData : ScreenData
+    public class DashboardScreenData : ScreenData
     {
         public User User { get; set; }
     }
