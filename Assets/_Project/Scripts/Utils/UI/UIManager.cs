@@ -63,6 +63,11 @@ namespace Rabah.Utils.UI
         [SerializeField]
         private ModalWindowManager notificationModalViewManager;
 
+        [Space(5)]
+        [Header("Mishky UI Manager")]
+        [SerializeField]
+        private Michsky.MUIP.UIManager michskyUIManager;
+
         private Dictionary<ScreenHandle, Screen> prefabDictionary = new();
         private Dictionary<ScreenHandle, Screen> allScreens = new();
         private Screen currentScreen;
@@ -235,12 +240,22 @@ namespace Rabah.Utils.UI
             ShowNotificationModal(
                 title: "Coming Soon",
                 descriptionText: "This feature is not available yet.",
-                icon: null);
+                icon: null,
+                iconColor: Color.black);
         }
 
-        public void ShowNotificationModal(string title, string descriptionText, Sprite icon, bool isConfirmButton = false, Action okConfirmAction = null)
+        public void ShowNotificationModal(string title, string descriptionText, Sprite icon, Color? iconColor = null, bool isConfirmButton = false, Action okConfirmAction = null, bool isCancelButton = false)
         {
 
+            if (isCancelButton)
+            {
+                notificationModalViewManager.showCancelButton = isCancelButton;
+                notificationModalViewManager.closeOnCancel = true;
+            }
+            else
+            {
+                notificationModalViewManager.showCancelButton = false;
+            }
             if (isConfirmButton)
             {
                 notificationModalViewManager.showConfirmButton = isConfirmButton;
@@ -260,7 +275,6 @@ namespace Rabah.Utils.UI
             notificationModalViewManager.titleText = title;
             notificationModalViewManager.descriptionText = descriptionText;
 
-
             if (icon == null)
             {
                 notificationModalViewManager.windowIcon.gameObject.SetActive(false);
@@ -269,6 +283,7 @@ namespace Rabah.Utils.UI
             {
                 notificationModalViewManager.windowIcon.gameObject.SetActive(true);
                 notificationModalViewManager.icon = icon;
+                michskyUIManager.modalWindowIconColor = iconColor ?? Color.black;
             }
             notificationModalViewManager.UpdateUI();
             notificationModalViewManager.OpenWindow();

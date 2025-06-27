@@ -55,7 +55,8 @@ namespace Rabah.Screens
                     UIManager.Instance.ShowNotificationModal(
                         title: "Registration Failed",
                         descriptionText: error.ToString(),
-                        icon: warningIcon);
+                        icon: warningIcon,
+                        iconColor: Color.black);
                 };
         }
 
