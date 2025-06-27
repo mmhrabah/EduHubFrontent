@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ae3164da72a4d43b8f72ace75385ac, type: 3}
   m_Name: 1 - LoginScreenData
   m_EditorClassIdentifier: 
-  title: Register
+  title: Login
   isFullScreen: 1
   screenWidth: 1920
   screenHeight: 1080

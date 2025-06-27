@@ -16,6 +16,7 @@ public class ScreenSetupDataSO : ScriptableObject
     public bool hasResetButton;
     public bool hasNextButton;
     public bool hasBottomPanel;
+    public bool hasLeftPanel;
     public bool hasTopPanel;
     public RenderMode renderMode;
     public ScreenHandle screenHandle;

@@ -55,6 +55,8 @@ namespace Rabah.Utils.UI
         private GameObject topPanel;
         [SerializeField]
         private GameObject bottomPanel;
+        [SerializeField]
+        private GameObject leftPanel;
 
         [Space(5)]
         [Header("Notifications")]
@@ -202,6 +204,11 @@ namespace Rabah.Utils.UI
         public void ControlBottomPanel(bool isActive)
         {
             bottomPanel.SetActive(isActive);
+        }
+
+        public void ControlLeftPanel(bool isActive)
+        {
+            leftPanel.SetActive(isActive);
         }
 
         public void ControlCamera(bool isActive)

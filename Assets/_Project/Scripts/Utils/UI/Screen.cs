@@ -40,6 +40,7 @@ namespace Rabah.Utils.UI
             UIManager.Instance.ControlBackButton(ScreenSetupData.hasBackButton);
             UIManager.Instance.ControlResetButton(ScreenSetupData.hasResetButton);
             UIManager.Instance.ControlNextButton(ScreenSetupData.hasNextButton);
+            UIManager.Instance.ControlLeftPanel(ScreenSetupData.hasLeftPanel);
             UIManager.Instance.ControlBottomPanel(ScreenSetupData.hasBottomPanel);
             UIManager.Instance.ControlTopPanel(ScreenSetupData.hasTopPanel);
         }

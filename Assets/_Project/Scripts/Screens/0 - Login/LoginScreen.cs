@@ -8,6 +8,8 @@ using Rabah.Utils.Network;
 using System.Net;
 using Rabah.Utils.Session;
 using Rabah.GeneralDataModel;
+using DG.Tweening;
+using UnityEngine.UI;
 
 
 namespace Rabah.Screens
@@ -18,13 +20,25 @@ namespace Rabah.Screens
     public class LoginScreen : ScreenSendDataToDatabase<LoginDataModelRequest, ResponseModel<LoginResponse>, LoginResponse>
     {
         [SerializeField]
-        private InputFieldUIElement emailInputField;
+        private InputFieldUIElement usernameInputField;
         [SerializeField]
         private InputFieldUIElement passwordInputField;
         [SerializeField]
         private ButtonManager regitserButton;
         [SerializeField]
         private Sprite warningIcon;
+        [SerializeField]
+        private CanvasGroup logosCanvasGroup;
+        [SerializeField]
+        private CanvasGroup loginContentCanvasGroup;
+        [SerializeField]
+        private Image companyLogoImage;
+        [SerializeField]
+        private Image appLogoImage;
+        [SerializeField]
+        private float animationDuration = 1.5f;
+        [SerializeField]
+        private Ease animationEase = Ease.OutBounce;
 
 
         protected override void Awake()
@@ -81,6 +95,43 @@ namespace Rabah.Screens
         public override void OnOpen(ScreenData data)
         {
             base.OnOpen(data);
+            PlayLoginAnimation();
+        }
+
+
+        [ContextMenu("Play Login Animation")]
+        private void PlayLoginAnimation()
+        {
+            logosCanvasGroup.DOFade(1f, animationDuration)
+                .OnComplete(() =>
+                {
+                    appLogoImage.transform.DOScale(1f, animationDuration)
+                        .SetEase(animationEase)
+                        .OnComplete(() =>
+                        {
+                            companyLogoImage.transform.DOScale(1f, animationDuration)
+                                .SetEase(animationEase)
+                                .OnComplete(() =>
+                                {
+                                    appLogoImage.DOFade(0f, animationDuration)
+                                    .OnPlay(() =>
+                                    {
+                                        companyLogoImage.DOFade(0f, animationDuration)
+                                            .OnComplete(() =>
+                                            {
+                                                logosCanvasGroup.interactable = false;
+                                                logosCanvasGroup.blocksRaycasts = false;
+                                                loginContentCanvasGroup.DOFade(1f, animationDuration)
+                                                    .OnComplete(() =>
+                                                    {
+                                                        loginContentCanvasGroup.interactable = true;
+                                                        loginContentCanvasGroup.blocksRaycasts = true;
+                                                    });
+                                            });
+                                    });
+                                });
+                        });
+                });
         }
 
         protected override LoginDataModelRequest ExtractDataFromInputs()
@@ -95,7 +146,7 @@ namespace Rabah.Screens
 
         protected override void FillUIElementsInputs()
         {
-            UIElementsInputs.Add(emailInputField);
+            UIElementsInputs.Add(usernameInputField);
             UIElementsInputs.Add(passwordInputField);
         }
 
@@ -129,6 +180,25 @@ namespace Rabah.Screens
                 },
                 fixResponse: true
             );
+        }
+
+        public override void SetupLayout()
+        {
+            base.SetupLayout();
+            ResetSplashElementsAnimations();
+        }
+
+        [ContextMenu("Reset Splash Elements Animations")]
+        private void ResetSplashElementsAnimations()
+        {
+            logosCanvasGroup.alpha = 0f;
+            loginContentCanvasGroup.alpha = 0f;
+            logosCanvasGroup.interactable = true;
+            logosCanvasGroup.blocksRaycasts = true;
+            loginContentCanvasGroup.interactable = false;
+            loginContentCanvasGroup.blocksRaycasts = false;
+            companyLogoImage.transform.DOScale(0.0f, 0.0f);
+            appLogoImage.transform.DOScale(0.0f, 0.0f);
         }
     }
 }
