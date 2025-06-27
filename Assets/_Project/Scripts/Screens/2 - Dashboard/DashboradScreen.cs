@@ -20,16 +20,24 @@ namespace Rabah.Screens
     {
         [SerializeField]
         private Sprite warningIcon;
+        [SerializeField]
+        private TMP_Text totalContentItemsText;
+        [SerializeField]
+        private TMP_Text activeSubscriptionsText;
+        [SerializeField]
+        private TMP_Text contentAddedThisMonthText;
+        [SerializeField]
+        private List<DashboardContentItemDetails> contentItemsDetails;
 
-        private void Awake()
+        public override void SetupLayout()
         {
-
-        }
-
-        public override void OnOpen(ScreenData data)
-        {
-            base.OnOpen(data);
+            base.SetupLayout();
+            UIManager.Instance.ResetWindowsRectData();
             UIManager.Instance.LeftPanelButtonsManager.SelectButton(0);
+            foreach (var contentItemDetails in contentItemsDetails)
+            {
+                contentItemDetails.gameObject.SetActive(false);
+            }
         }
         public override bool IsScreenDataValid()
         {
@@ -54,6 +62,25 @@ namespace Rabah.Screens
 
         protected override void OnDataFetched(ResponseModel<DashboardScreenResponse> response)
         {
+            totalContentItemsText.text = response.Data.totalContentItems.ToString();
+            activeSubscriptionsText.text = response.Data.activeSubscriptions.ToString();
+            contentAddedThisMonthText.text = response.Data.contentAddedThisMonth.ToString();
+            for (int i = 0; i < contentItemsDetails.Count; i++)
+            {
+                if (i < response.Data.recentlyAddedContent.Count)
+                {
+                    var contentItem = response.Data.recentlyAddedContent[i];
+                    contentItemsDetails[i].SetContentItemDetails(
+                        title: contentItem.Name,
+                        type: contentItem.Type.ToString(),
+                        version: contentItem.Version);
+                    contentItemsDetails[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    contentItemsDetails[i].gameObject.SetActive(false);
+                }
+            }
         }
 
         #endregion

@@ -28,4 +28,4 @@ MonoBehaviour:
   fixedResponse: 1
   renderMode: 0
   screenHandle: 3
-  mainEndpoint: /Dashboard
+  mainEndpoint: Dashboard

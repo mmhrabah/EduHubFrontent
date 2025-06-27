@@ -60,6 +60,7 @@ namespace Rabah.Utils.UI
         [SerializeField]
         private ButtonSelectManager leftPanelButtonsManager;
 
+
         [Space(5)]
         [Header("Notifications")]
         [SerializeField]
@@ -75,8 +76,8 @@ namespace Rabah.Utils.UI
         private Screen currentScreen;
         private readonly Vector2 windowsRectAnchorMin = new(0, 0);
         private readonly Vector2 windowsRectAnchorMax = new(1, 1);
-        private readonly Vector2 windowsRectOffsetMin = new(0, 125);
-        private readonly Vector2 windowsRectOffsetMax = new(0, -150);
+        private readonly Vector2 windowsRectOffsetMin = new(380, 0);
+        private readonly Vector2 windowsRectOffsetMax = new(-50, -150);
         private int changeableBGIndex = 0;
         public Screen CurrentScreen { get => currentScreen; set => currentScreen = value; }
         public ButtonSelectManager LeftPanelButtonsManager { get => leftPanelButtonsManager; private set => leftPanelButtonsManager = value; }
@@ -321,6 +322,7 @@ namespace Rabah.Utils.UI
 
         public void ResetWindowsRectData()
         {
+            print($"windowsRectAnchorMin: {windowsRectAnchorMin}, windowsRectAnchorMax: {windowsRectAnchorMax}, windowsRectOffsetMin: {windowsRectOffsetMin}, windowsRectOffsetMax: {windowsRectOffsetMax}");
             SetWindowsRectData(windowsRectAnchorMin, windowsRectAnchorMax, windowsRectOffsetMin, windowsRectOffsetMax);
         }
 
