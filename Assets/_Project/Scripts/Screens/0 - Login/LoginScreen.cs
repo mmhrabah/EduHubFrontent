@@ -72,7 +72,7 @@ namespace Rabah.Screens
                     Debug.LogError("Network error: " + error);
                     UIManager.Instance.ShowNotificationModal(
                         title: "Login Failed",
-                        descriptionText: error,
+                        descriptionText: "Invalid username or password. Please try again.",
                         icon: warningIcon,
                         iconColor: Color.red,
                         isCancelButton: false);

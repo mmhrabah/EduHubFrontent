@@ -12,6 +12,7 @@ using System.Linq;
 using Rabah.Utils.Session;
 using UnityEngine.UI;
 using Rabah.PrefabRaw;
+using Rabah.CustomizedComponents;
 
 namespace Rabah.Screens
 {
@@ -28,7 +29,7 @@ namespace Rabah.Screens
         [SerializeField]
         private TMP_Text contentAddedThisMonthText;
         [SerializeField]
-        private List<ContentPrefabDataRaw> contentItemsDetails;
+        private ContentViewerManager contentViewerManager;
 
         #endregion
 
@@ -39,7 +40,6 @@ namespace Rabah.Screens
             base.SetupLayout();
             UIManager.Instance.ResetWindowsRectData();
             UIManager.Instance.LeftPanelButtonsManager.SelectButton(0);
-            ResetRecentlyContentItems();
         }
 
         public override bool IsScreenDataValid()
@@ -60,35 +60,28 @@ namespace Rabah.Screens
 
         protected override void OnDataFetched(ResponseModel<DashboardScreenResponse> response)
         {
-            ResetRecentlyContentItems();
             totalContentItemsText.text = response.Data.totalContentItems.ToString();
             activeSubscriptionsText.text = response.Data.activeSubscriptions.ToString();
             contentAddedThisMonthText.text = response.Data.contentAddedThisMonth.ToString();
-            for (int i = 0; i < contentItemsDetails.Count; i++)
+            contentViewerManager.ShowContentDetails(response.Data.recentlyAddedContent, (content) =>
             {
-                if (i < response.Data.recentlyAddedContent.Count)
-                {
-                    var contentItem = response.Data.recentlyAddedContent[i];
-                    contentItemsDetails[i].SetContentItemDetails(contentItem, (c) => { FetchData(); });
-                    contentItemsDetails[i].gameObject.SetActive(true);
-                }
-                else
-                {
-                    contentItemsDetails[i].gameObject.SetActive(false);
-                }
-            }
-        }
-
-        #endregion
-
-        #region Private Methods
-
-        private void ResetRecentlyContentItems()
-        {
-            foreach (var contentItemDetails in contentItemsDetails)
-            {
-                contentItemDetails.gameObject.SetActive(false);
-            }
+                // Handle content deletion success
+                APIManager.Instance.Delete<string>($"content/{content.Id}",
+                    onSuccess: (deleteResponse) =>
+                    {
+                        Debug.Log("Content deleted successfully.");
+                        contentViewerManager.ShowContentDetails(response.Data.recentlyAddedContent, null);
+                    },
+                    onFailure: (error) =>
+                    {
+                        Debug.LogError($"Failed to delete content: {error}");
+                        UIManager.Instance.ShowNotificationModal(
+                            title: "Error",
+                            descriptionText: error,
+                            icon: warningIcon,
+                            iconColor: Color.red);
+                    });
+            });
         }
 
         #endregion

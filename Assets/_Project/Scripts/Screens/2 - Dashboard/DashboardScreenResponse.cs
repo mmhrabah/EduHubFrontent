@@ -1,8 +1,8 @@
+using System;
+using System.Collections.Generic;
+using Rabah.GeneralDataModel;
 namespace Rabah.Screens
 {
-    using System;
-    using System.Collections.Generic;
-    using Rabah.GeneralDataModel;
 
     [Serializable]
     public class DashboardScreenResponse : RequestModel

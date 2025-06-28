@@ -6,5 +6,11 @@ namespace Rabah.Utils.UI
         LoginScreen,
         RegisterScreen,
         Dashboard,
+        ContentScreen,
+        AddContentScreen,
+        EditContentScreen,
+        CategoriesAndTypesScreen,
+        AddCategoryScreen,
+        EditCategoryScreen,
     }
 }

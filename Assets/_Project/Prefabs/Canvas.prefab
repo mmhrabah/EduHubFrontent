@@ -453,10 +453,10 @@ RectTransform:
   - {fileID: 2880909754728983833}
   m_Father: {fileID: 3830860147831613292}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 25.894989, y: -31}
-  m_SizeDelta: {x: 25, y: 58}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 25, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &349653052028357617
 GameObject:
@@ -1790,10 +1790,10 @@ RectTransform:
   - {fileID: 5820730814195555383}
   m_Father: {fileID: 503763555150446226}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28.649994, y: -31.5}
-  m_SizeDelta: {x: 25, y: 57}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 25, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1210812231985203403
 GameObject:
@@ -3231,10 +3231,10 @@ RectTransform:
   - {fileID: 6752024672716643647}
   m_Father: {fileID: 4708071918575077136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30.175003, y: -36.5}
-  m_SizeDelta: {x: 25, y: 47}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 25, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1896190587436191704
 GameObject:
@@ -3451,6 +3451,7 @@ GameObject:
   - component: {fileID: 511904714455681851}
   - component: {fileID: 7144755210538129446}
   - component: {fileID: 4162060835651484439}
+  - component: {fileID: 794862231499497405}
   m_Layer: 5
   m_Name: ContentButton
   m_TagString: Untagged
@@ -3559,6 +3560,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 794862231499497405}
+        m_TargetAssemblyTypeName: Rabah.Utils.UI.ScreenButtonNavigator, Assembly-CSharp
+        m_MethodName: NavigateToScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDoubleClick:
     m_PersistentCalls:
       m_Calls: []
@@ -3645,6 +3658,19 @@ MonoBehaviour:
   disabledText: {fileID: 4213751004084237966}
   normalText: {fileID: 5697037676648497310}
   highlightedText: {fileID: 5592513408191519679}
+--- !u!114 &794862231499497405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2004891608786664319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d603679c4354e46a7b65ae6210a98c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goToScreenHandle: 4
 --- !u!1 &2040129397096369731
 GameObject:
   m_ObjectHideFlags: 0
@@ -5872,6 +5898,7 @@ GameObject:
   - component: {fileID: 39940023359592976}
   - component: {fileID: 236962769539266846}
   - component: {fileID: 5200202652835867661}
+  - component: {fileID: 392052104270707376}
   m_Layer: 5
   m_Name: DashboardButton
   m_TagString: Untagged
@@ -5980,6 +6007,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 392052104270707376}
+        m_TargetAssemblyTypeName: Rabah.Utils.UI.ScreenButtonNavigator, Assembly-CSharp
+        m_MethodName: NavigateToScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDoubleClick:
     m_PersistentCalls:
       m_Calls: []
@@ -6066,6 +6105,19 @@ MonoBehaviour:
   disabledText: {fileID: 4833970251559949068}
   normalText: {fileID: 217777696860114566}
   highlightedText: {fileID: 3835446691409898482}
+--- !u!114 &392052104270707376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3795675469971283827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d603679c4354e46a7b65ae6210a98c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goToScreenHandle: 3
 --- !u!1 &3869325157615858489
 GameObject:
   m_ObjectHideFlags: 0
@@ -9726,6 +9778,8 @@ MonoBehaviour:
     prefab: {fileID: 5607419596119266738, guid: 50332661d0eea4fb893e9a4bcc6383ed, type: 3}
   - handle: 2
     prefab: {fileID: 6143357325917351848, guid: 118968e80994d47c1a117f0c8e0184db, type: 3}
+  - handle: 4
+    prefab: {fileID: 2064821582732491338, guid: f66a42be250bd475cb6ebcadb6676e43, type: 3}
   backButton: {fileID: 9116886057717880879}
   resetButton: {fileID: 2603378530536848964}
   nextButton: {fileID: 3982850493722500203}
@@ -10228,6 +10282,7 @@ GameObject:
   - component: {fileID: 625391417296079628}
   - component: {fileID: 3325404110069022010}
   - component: {fileID: 4445911394336271050}
+  - component: {fileID: 8854036663517709566}
   m_Layer: 5
   m_Name: Categories&TypesButton
   m_TagString: Untagged
@@ -10336,6 +10391,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8854036663517709566}
+        m_TargetAssemblyTypeName: Rabah.Utils.UI.ScreenButtonNavigator, Assembly-CSharp
+        m_MethodName: NavigateToScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDoubleClick:
     m_PersistentCalls:
       m_Calls: []
@@ -10422,6 +10489,19 @@ MonoBehaviour:
   disabledText: {fileID: 3039196243100585227}
   normalText: {fileID: 2378307237362580842}
   highlightedText: {fileID: 1000292753365775081}
+--- !u!114 &8854036663517709566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6401826440116889221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d603679c4354e46a7b65ae6210a98c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goToScreenHandle: 0
 --- !u!1 &6427945948151722979
 GameObject:
   m_ObjectHideFlags: 0
@@ -12105,10 +12185,10 @@ RectTransform:
   - {fileID: 159553863920299613}
   m_Father: {fileID: 4627638058100173487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 26.61499, y: -31.5}
-  m_SizeDelta: {x: 25, y: 57}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 25, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &7577274274250741259
 GameObject:
@@ -13132,6 +13212,7 @@ GameObject:
   - component: {fileID: 4760903626089159158}
   - component: {fileID: 3108591242690490465}
   - component: {fileID: 3976998052437916625}
+  - component: {fileID: 8765790070343099422}
   m_Layer: 5
   m_Name: SubscriptionButton
   m_TagString: Untagged
@@ -13240,6 +13321,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 8765790070343099422}
+        m_TargetAssemblyTypeName: Rabah.Utils.UI.ScreenButtonNavigator, Assembly-CSharp
+        m_MethodName: NavigateToScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDoubleClick:
     m_PersistentCalls:
       m_Calls: []
@@ -13326,6 +13419,19 @@ MonoBehaviour:
   disabledText: {fileID: 4107147371392263287}
   normalText: {fileID: 8476795098105307017}
   highlightedText: {fileID: 2773955424443127192}
+--- !u!114 &8765790070343099422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8160899788552523410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25d603679c4354e46a7b65ae6210a98c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goToScreenHandle: 0
 --- !u!1 &8203730854372179810
 GameObject:
   m_ObjectHideFlags: 0

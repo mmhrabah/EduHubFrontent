@@ -101,10 +101,12 @@ namespace Rabah.Utils.Network
 
             if (request.result == UnityWebRequest.Result.Success)
             {
+                UnityEngine.Debug.Log("Request successful: " + request.downloadHandler.text);
                 if (fixResponse)
                 {
                     string responseText = request.downloadHandler.text;
                     string fixedResponse = "{\r\n    \"data\":" + responseText + "\r\n}";
+                    UnityEngine.Debug.Log("Request successful:\nFixed Response: " + fixedResponse);
                     onSuccess?.Invoke(fixedResponse);
                 }
                 else

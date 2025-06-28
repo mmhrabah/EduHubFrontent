@@ -61,7 +61,7 @@ namespace Rabah.PrefabRaw
             this.content = content;
             this.onDeleteSuccess = onDeleteSuccess;
             titleText.text = content.Name;
-            typeText.text = content.Type.ToString();
+            typeText.text = ContentTypeMapping.GetContentTypeName(content.TypeId);
             versionText.text = content.Version;
         }
     }
