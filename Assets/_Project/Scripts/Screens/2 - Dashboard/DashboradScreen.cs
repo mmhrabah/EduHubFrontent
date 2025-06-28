@@ -11,13 +11,14 @@ using Michsky.MUIP;
 using System.Linq;
 using Rabah.Utils.Session;
 using UnityEngine.UI;
-
+using Rabah.PrefabRaw;
 
 namespace Rabah.Screens
 {
-
     public class DashboradScreen : ScreenWithFetchDataOnOpen<ResponseModel<DashboardScreenResponse>, DashboardScreenResponse>
     {
+        #region Private Fields
+
         [SerializeField]
         private Sprite warningIcon;
         [SerializeField]
@@ -27,27 +28,24 @@ namespace Rabah.Screens
         [SerializeField]
         private TMP_Text contentAddedThisMonthText;
         [SerializeField]
-        private List<DashboardContentItemDetails> contentItemsDetails;
+        private List<ContentPrefabDataRaw> contentItemsDetails;
+
+        #endregion
+
+        #region Overrides
 
         public override void SetupLayout()
         {
             base.SetupLayout();
             UIManager.Instance.ResetWindowsRectData();
             UIManager.Instance.LeftPanelButtonsManager.SelectButton(0);
-            foreach (var contentItemDetails in contentItemsDetails)
-            {
-                contentItemDetails.gameObject.SetActive(false);
-            }
+            ResetRecentlyContentItems();
         }
+
         public override bool IsScreenDataValid()
         {
             return true;
         }
-
-        #region UI Animations
-        #endregion
-
-        #region UI Setup
 
         protected override void OnErrorReceived(string error)
         {
@@ -62,6 +60,7 @@ namespace Rabah.Screens
 
         protected override void OnDataFetched(ResponseModel<DashboardScreenResponse> response)
         {
+            ResetRecentlyContentItems();
             totalContentItemsText.text = response.Data.totalContentItems.ToString();
             activeSubscriptionsText.text = response.Data.activeSubscriptions.ToString();
             contentAddedThisMonthText.text = response.Data.contentAddedThisMonth.ToString();
@@ -70,16 +69,25 @@ namespace Rabah.Screens
                 if (i < response.Data.recentlyAddedContent.Count)
                 {
                     var contentItem = response.Data.recentlyAddedContent[i];
-                    contentItemsDetails[i].SetContentItemDetails(
-                        title: contentItem.Name,
-                        type: contentItem.Type.ToString(),
-                        version: contentItem.Version);
+                    contentItemsDetails[i].SetContentItemDetails(contentItem, (c) => { FetchData(); });
                     contentItemsDetails[i].gameObject.SetActive(true);
                 }
                 else
                 {
                     contentItemsDetails[i].gameObject.SetActive(false);
                 }
+            }
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private void ResetRecentlyContentItems()
+        {
+            foreach (var contentItemDetails in contentItemsDetails)
+            {
+                contentItemDetails.gameObject.SetActive(false);
             }
         }
 
