@@ -61,5 +61,11 @@ namespace Rabah.Screens
                 descriptionText: "Internal server error, please try again later.",
                 icon: null);
         }
+
+        public override void OnClose()
+        {
+            base.OnClose();
+            addNewContentButtonPanel.transform.parent = transform;
+        }
     }
 }

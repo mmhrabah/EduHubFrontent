@@ -11,5 +11,7 @@ namespace Rabah.Screens
         public int activeSubscriptions;
         public int contentAddedThisMonth;
         public List<Content> recentlyAddedContent;
+        public List<ContentType> contentTypes;
+        public List<Category> categories;
     }
 }

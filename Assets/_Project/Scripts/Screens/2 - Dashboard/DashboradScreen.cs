@@ -82,6 +82,16 @@ namespace Rabah.Screens
                             iconColor: Color.red);
                     });
             });
+            Session.ContentTypes = response.Data.contentTypes;
+            Session.Categories = response.Data.categories;
+            foreach (var contentType in response.Data.contentTypes)
+            {
+                print($"Content Type: {contentType.Name}, ID: {contentType.Id}");
+            }
+            foreach (var category in response.Data.categories)
+            {
+                print($"Category: {category.Name}, ID: {category.Id}");
+            }
         }
 
         #endregion
