@@ -233,6 +233,14 @@ namespace Rabah.Utils.UI
             item.SetSiblingIndex(siblingIndex);
         }
 
+        public void AddItemsToTopPanel(RectTransform item, int siblingIndex)
+        {
+            var itemName = item.name;
+            item.name = $"{itemName} - {CurrentScreen.name}";
+            item.SetParent(topPanel.transform);
+            item.SetSiblingIndex(siblingIndex);
+        }
+
         public void ControlBackground(bool isActive)
         {
             mainBackground.gameObject.SetActive(isActive);

@@ -1,20 +1,25 @@
 using System.Collections.Generic;
+using Michsky.MUIP;
 using Rabah.CustomizedComponents;
 using Rabah.GeneralDataModel;
 using Rabah.Utils.Network;
 using Rabah.Utils.UI;
 using UnityEngine;
+using UIManager = Rabah.Utils.UI.UIManager;
 namespace Rabah.Screens
 {
     public class ContentScreen : ScreenWithFetchDataOnOpen<ResponseModel<List<Content>>, List<Content>>
     {
         [SerializeField]
         private ContentViewerManager contentViewerManager;
+        [SerializeField]
+        private RectTransform addNewContentButtonPanel;
 
         public override void SetupLayout()
         {
             base.SetupLayout();
             UIManager.Instance.ResetWindowsRectData();
+            UIManager.Instance.AddItemsToTopPanel(addNewContentButtonPanel, 4);
             UIManager.Instance.LeftPanelButtonsManager.SelectButton(1);
         }
         public override bool IsScreenDataValid()
