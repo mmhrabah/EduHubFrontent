@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: ccf36ef9fc524088b9c1c80b892ea1a7
+timeCreated: 1510134735
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98713
+  packageName: File Browser PRO
+  packageVersion: 2024.1.1
+  assetPath: Assets/Plugins/crosstales/FileBrowser/Scripts/Util/Helper.cs
+  uploadId: 650744

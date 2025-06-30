@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5730280365257811184}
   - component: {fileID: 7428457478244194960}
+  - component: {fileID: 2763104702039610306}
   m_Layer: 0
   m_Name: API Manager
   m_TagString: Untagged
@@ -42,6 +43,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17e2e90bd332f9245ad0268a77f2c0e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 1
+  networkData: {fileID: 11400000, guid: ec798ba314be148d58b66084d33e6e04, type: 2}
+--- !u!114 &2763104702039610306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132197602425955735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e90c8ad78f354492b56a02426803775, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1

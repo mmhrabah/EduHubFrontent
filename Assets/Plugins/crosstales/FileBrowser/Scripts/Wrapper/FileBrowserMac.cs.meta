@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: d5816d0f750a4180a124b8fbb161eb3c
+timeCreated: 1505207084
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98713
+  packageName: File Browser PRO
+  packageVersion: 2024.1.1
+  assetPath: Assets/Plugins/crosstales/FileBrowser/Scripts/Wrapper/FileBrowserMac.cs
+  uploadId: 650744

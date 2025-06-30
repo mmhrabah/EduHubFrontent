@@ -13,3 +13,5 @@ MonoBehaviour:
   m_Name: Local Data
   m_EditorClassIdentifier: 
   baseURL: http://localhost:5154/api/
+  uploadUrl: http://localhost:5154/api/Files/Upload
+  downloadUrl: http://localhost:5154/api/Files/Download/

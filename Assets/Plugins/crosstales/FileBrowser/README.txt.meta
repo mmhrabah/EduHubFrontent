@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 20be6d049cd5b96439cc2a2f0eec35cd
+timeCreated: 1510077234
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98713
+  packageName: File Browser PRO
+  packageVersion: 2024.1.1
+  assetPath: Assets/Plugins/crosstales/FileBrowser/README.txt
+  uploadId: 650744

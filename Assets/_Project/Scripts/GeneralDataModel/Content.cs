@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using Rabah.Utils.Session;
 
 namespace Rabah.GeneralDataModel
 {
@@ -22,15 +24,10 @@ namespace Rabah.GeneralDataModel
 
     public class ContentTypeMapping
     {
-
-        public static readonly Dictionary<Guid, ContentType> ContentTypeNames = new Dictionary<Guid, ContentType>
-        {
-            { Guid.Parse("a45c2e16-5da0-4f78-8ae1-0e49ebb5e1e9"), new ContentType { Id = Guid.Parse("a45c2e16-5da0-4f78-8ae1-0e49ebb5e1e9"), Name = "ePub" } },
-            { Guid.Parse("88b9f521-6a10-42ee-9062-2705f39fc75e"), new ContentType { Id = Guid.Parse("88b9f521-6a10-42ee-9062-2705f39fc75e"), Name = "HTML" } },
-        };
         public static string GetContentTypeName(Guid typeId)
         {
-            return ContentTypeNames.ContainsKey(typeId) ? ContentTypeNames[typeId].Name : "Unknown Type";
+            var conentType = Session.ContentTypes.FirstOrDefault((ct) => typeId.Equals(ct.Id));
+            return conentType == null ? "Unknown Type" : conentType.Name;
         }
     }
 }

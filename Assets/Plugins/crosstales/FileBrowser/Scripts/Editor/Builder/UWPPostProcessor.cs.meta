@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 98f8f4608f3faa34db5b61a25b64846a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98713
+  packageName: File Browser PRO
+  packageVersion: 2024.1.1
+  assetPath: Assets/Plugins/crosstales/FileBrowser/Scripts/Editor/Builder/UWPPostProcessor.cs
+  uploadId: 650744

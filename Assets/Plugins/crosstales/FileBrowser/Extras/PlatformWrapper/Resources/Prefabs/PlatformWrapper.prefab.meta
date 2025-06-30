@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1212379c0f2a98548b6029ccc2e43b4c
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98713
+  packageName: File Browser PRO
+  packageVersion: 2024.1.1
+  assetPath: Assets/Plugins/crosstales/FileBrowser/Extras/PlatformWrapper/Resources/Prefabs/PlatformWrapper.prefab
+  uploadId: 650744

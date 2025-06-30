@@ -9807,6 +9807,8 @@ MonoBehaviour:
     prefab: {fileID: 6143357325917351848, guid: 118968e80994d47c1a117f0c8e0184db, type: 3}
   - handle: 4
     prefab: {fileID: 2064821582732491338, guid: f66a42be250bd475cb6ebcadb6676e43, type: 3}
+  - handle: 5
+    prefab: {fileID: 6927827934475328955, guid: 22e4bcdd77c5448e098169f554066285, type: 3}
   backButton: {fileID: 9116886057717880879}
   resetButton: {fileID: 2603378530536848964}
   nextButton: {fileID: 3982850493722500203}
@@ -16532,11 +16534,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 114813538682097148, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
       propertyPath: m_Color.b
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114813538682097148, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
       propertyPath: m_Color.g
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114898826336506840, guid: bdb8f55c79de3ce429e354b19dc74938, type: 3}
       propertyPath: m_havePropertiesChanged

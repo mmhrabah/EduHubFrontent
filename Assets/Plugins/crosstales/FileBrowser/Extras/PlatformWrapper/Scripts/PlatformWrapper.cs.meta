@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3fcb1a654125afe48a1cce9056ec61d0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 98713
+  packageName: File Browser PRO
+  packageVersion: 2024.1.1
+  assetPath: Assets/Plugins/crosstales/FileBrowser/Extras/PlatformWrapper/Scripts/PlatformWrapper.cs
+  uploadId: 650744

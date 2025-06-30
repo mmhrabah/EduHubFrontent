@@ -6,5 +6,7 @@ namespace Rabah.Utils.Network
     public class NetworkData : ScriptableObject
     {
         public string baseURL;
+        public string uploadUrl;
+        public string downloadUrl;
     }
 }

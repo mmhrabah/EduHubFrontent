@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6ae3164da72a4d43b8f72ace75385ac, type: 3}
+  m_Name: 1 - RegisterScreenData
+  m_EditorClassIdentifier: 
+  title: Register
+  isFullScreen: 1
+  screenWidth: 1920
+  screenHeight: 1080
+  screenScale: 1
+  orientation: 3
+  isAutoRotate: 0
+  hasBackButton: 0
+  hasResetButton: 0
+  hasNextButton: 0
+  hasBottomPanel: 0
+  hasTopPanel: 0
+  renderMode: 0
+  screenHandle: 2
+  mainEndpoint: User
