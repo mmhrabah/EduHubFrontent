@@ -14,7 +14,7 @@ namespace Rabah.Utils.Network
         private string baseUrl = "";
 
 
-        public void Get<T>(string endpoint, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false)
+        public void Get<T>(string endpoint, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false, bool mustParse = true)
         {
             baseUrl = networkData.baseURL;
             UnityWebRequest request = UnityWebRequest.Get(baseUrl + endpoint);
@@ -24,16 +24,22 @@ namespace Rabah.Utils.Network
                     request,
                     (response) =>
                     {
-                        T data = JsonConvert.DeserializeObject<T>(response);
-                        onSuccess?.Invoke(data);
+                        if (mustParse)
+                        {
+                            T data = JsonConvert.DeserializeObject<T>(response);
+                            onSuccess?.Invoke(data);
+                        }
+                        else
+                            onSuccess?.Invoke(default); // If mustParse is false, we just invoke onSuccess with a default value
                     },
                     onFailure,
-                    fixResponse
+                    fixResponse,
+                    mustParse
                     )
                 );
         }
 
-        public void Post<T>(string endpoint, object data, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false)
+        public void Post<T>(string endpoint, object data, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false, bool mustParse = true)
         {
             baseUrl = networkData.baseURL;
             string jsonData = JsonConvert.SerializeObject(data);
@@ -48,16 +54,22 @@ namespace Rabah.Utils.Network
                     request,
                     (response) =>
                     {
-                        T data = JsonConvert.DeserializeObject<T>(response);
-                        onSuccess?.Invoke(data);
+                        if (mustParse)
+                        {
+                            T data = JsonConvert.DeserializeObject<T>(response);
+                            onSuccess?.Invoke(data);
+                        }
+                        else
+                            onSuccess?.Invoke(default); // If mustParse is false, we just invoke onSuccess with a default value
                     },
                     onFailure,
-                    fixResponse
+                    fixResponse,
+                    mustParse
                     )
                 );
         }
 
-        public void Put<T>(string endpoint, object data, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false)
+        public void Put<T>(string endpoint, object data, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false, bool mustParse = true)
         {
             baseUrl = networkData.baseURL;
             string jsonData = JsonConvert.SerializeObject(data);
@@ -69,31 +81,44 @@ namespace Rabah.Utils.Network
                 request,
                 (response) =>
                 {
-                    T data = JsonConvert.DeserializeObject<T>(response);
-                    onSuccess?.Invoke(data);
+                    if (mustParse)
+                    {
+                        T data = JsonConvert.DeserializeObject<T>(response);
+                        onSuccess?.Invoke(data);
+                    }
+                    else
+                        onSuccess?.Invoke(default); // If mustParse is false, we just invoke onSuccess with a default value
                 },
                 onFailure,
-                fixResponse
+                fixResponse,
+                mustParse
                 )
             );
         }
 
-        public void Delete<T>(string endpoint, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false)
+        public void Delete<T>(string endpoint, Action<T> onSuccess, Action<string> onFailure, Action onSend = null, bool fixResponse = false, bool mustParse = true)
         {
             baseUrl = networkData.baseURL;
             UnityWebRequest request = UnityWebRequest.Delete(baseUrl + endpoint);
             onSend?.Invoke();
             StartCoroutine(SendRequest(request, (response) =>
             {
-                T data = JsonConvert.DeserializeObject<T>(response);
-                onSuccess?.Invoke(data);
+                if (mustParse)
+                {
+                    T data = JsonConvert.DeserializeObject<T>(response);
+                    onSuccess?.Invoke(data);
+                }
+                else
+                    onSuccess?.Invoke(default); // If mustParse is false, we just invoke onSuccess with a default value
             },
-            onFailure
+            onFailure,
+            fixResponse,
+            mustParse
                 )
             );
         }
 
-        private IEnumerator SendRequest(UnityWebRequest request, Action<string> onSuccess, Action<string> onFailure, bool fixResponse = false)
+        private IEnumerator SendRequest(UnityWebRequest request, Action<string> onSuccess, Action<string> onFailure, bool fixResponse = false, bool mustParse = true)
         {
             OnRequestSent?.Invoke(request);
 
@@ -101,22 +126,30 @@ namespace Rabah.Utils.Network
 
             if (request.result == UnityWebRequest.Result.Success)
             {
-                UnityEngine.Debug.Log("Request successful: " + request.downloadHandler.text);
-                if (fixResponse)
+                if (mustParse)
                 {
-                    string responseText = request.downloadHandler.text;
-                    string fixedResponse = "{\r\n    \"data\":" + responseText + "\r\n}";
-                    UnityEngine.Debug.Log("Request successful:\nFixed Response: " + fixedResponse);
-                    onSuccess?.Invoke(fixedResponse);
+                    Debug.Log("Request successful: " + request.downloadHandler.text);
+                    if (fixResponse)
+                    {
+                        string responseText = request.downloadHandler.text;
+                        string fixedResponse = "{\r\n    \"data\":" + responseText + "\r\n}";
+                        Debug.Log("Request successful:\nFixed Response: " + fixedResponse);
+                        onSuccess?.Invoke(fixedResponse);
+                    }
+                    else
+                    {
+                        onSuccess?.Invoke(request.downloadHandler.text);
+                    }
                 }
                 else
                 {
-                    onSuccess?.Invoke(request.downloadHandler.text);
+                    Debug.Log("Request successful, but not parsing response: " + request.downloadHandler.text);
+                    onSuccess?.Invoke(default); // If mustParse is false, we just invoke onSuccess with a default value
                 }
             }
             else
             {
-                UnityEngine.Debug.LogError(request.error + " " + request.downloadHandler.text);
+                Debug.LogError(request.error + " " + request.downloadHandler.text);
                 onFailure?.Invoke(request.error + " " + request.downloadHandler.text);
             }
         }

@@ -36,24 +36,26 @@ namespace Rabah.PrefabRaw
             // {
             //     content = content
             // });
+            UIManager.Instance.ShowComingSoonModal();
         }
 
         private void OnDeleteButtonClicked()
         {
-            APIManager.Instance.Delete<string>($"content/{content.Id}",
-                onSuccess: (response) =>
-                {
-                    Debug.Log("Content deleted successfully.");
-                    onDeleteSuccess?.Invoke(content);
-                },
-                onFailure: (error) =>
-                {
-                    Debug.LogError($"Failed to delete content: {error}");
-                    UIManager.Instance.ShowNotificationModal(
-                        title: "Error",
-                        descriptionText: error,
-                        icon: null);
-                });
+            // APIManager.Instance.Delete<string>($"content/{content.Id}",
+            //     onSuccess: (response) =>
+            //     {
+            //         Debug.Log("Content deleted successfully.");
+            //         onDeleteSuccess?.Invoke(content);
+            //     },
+            //     onFailure: (error) =>
+            //     {
+            //         Debug.LogError($"Failed to delete content: {error}");
+            //         UIManager.Instance.ShowNotificationModal(
+            //             title: "Error",
+            //             descriptionText: error,
+            //             icon: null);
+            //     });
+            UIManager.Instance.ShowComingSoonModal();
         }
 
         public void SetContentItemDetails(Content content, Action<Content> onDeleteSuccess)

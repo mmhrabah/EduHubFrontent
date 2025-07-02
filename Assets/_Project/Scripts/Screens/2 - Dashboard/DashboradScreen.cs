@@ -60,6 +60,8 @@ namespace Rabah.Screens
 
         protected override void OnDataFetched(ResponseModel<DashboardScreenResponse> response)
         {
+            Session.ContentTypes = response.Data.contentTypes;
+            Session.Categories = response.Data.categories;
             totalContentItemsText.text = response.Data.totalContentItems.ToString();
             activeSubscriptionsText.text = response.Data.activeSubscriptions.ToString();
             contentAddedThisMonthText.text = response.Data.contentAddedThisMonth.ToString();
@@ -82,8 +84,6 @@ namespace Rabah.Screens
                             iconColor: Color.red);
                     });
             });
-            Session.ContentTypes = response.Data.contentTypes;
-            Session.Categories = response.Data.categories;
             foreach (var contentType in response.Data.contentTypes)
             {
                 print($"Content Type: {contentType.Name}, ID: {contentType.Id}");

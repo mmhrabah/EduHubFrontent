@@ -7,9 +7,12 @@ namespace Rabah.Utils.UI
     /// </summary>
     public abstract class ScreenWithFetchDataOnOpen<T, S> : Screen where T : ResponseModel<S>
     {
+        protected virtual bool MustParse { get; set; } = true;
+
         public override void OnOpen(ScreenData data)
         {
             base.OnOpen(data);
+            UIManager.Instance.ShowLoading();
             FetchData();
         }
 
@@ -26,7 +29,8 @@ namespace Rabah.Utils.UI
                     OnErrorReceived(error);
                     UIManager.Instance.HideLoading();
                 },
-                fixResponse: true
+                fixResponse: true,
+                mustParse: MustParse
                 );
         }
 

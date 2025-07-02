@@ -25,6 +25,7 @@ namespace Rabah.Utils.UI
 
         protected List<UIElement> UIElementsInputs { get => uIElementsInputs; private set => uIElementsInputs = value; }
 
+        protected virtual bool MustParse { get; set; } = true;
         protected virtual void Awake()
         {
             sendButton.onClick.AddListener(OnSendButtonClicked);
@@ -57,12 +58,20 @@ namespace Rabah.Utils.UI
                     // Handle send action if needed
                     UIManager.Instance.ShowLoading();
                 },
-                fixResponse: ScreenSetupData.fixedResponse
+                fixResponse: ScreenSetupData.fixedResponse,
+                mustParse: MustParse
                 );
             }
             else
             {
                 // Handle invalid data case
+                foreach (var element in UIElementsInputs)
+                {
+                    if (!element.IsValid())
+                    {
+                        onInputHasInvalidData?.Invoke(element);
+                    }
+                }
                 Debug.LogError("Screen data is not valid.");
             }
         }
