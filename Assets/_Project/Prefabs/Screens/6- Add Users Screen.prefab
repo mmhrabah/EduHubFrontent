@@ -10817,7 +10817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8911886622107014803, guid: 228187799f05d42f6a197778ba066f77, type: 3}
       propertyPath: m_Name
-      value: 4 - Add Content Screen
+      value: 6- Add Users Screen
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10844,9 +10844,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 7659929225886194499}
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8911886622107014803, guid: 228187799f05d42f6a197778ba066f77, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6927827934475328955}
     - targetCorrespondingSourceObject: {fileID: 5031400036794671891, guid: 228187799f05d42f6a197778ba066f77, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8477687011996602467}
@@ -10861,36 +10858,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 821738367198997323, guid: 228187799f05d42f6a197778ba066f77, type: 3}
   m_PrefabInstance: {fileID: 4498580734979175246}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &5026944014078174685 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8911886622107014803, guid: 228187799f05d42f6a197778ba066f77, type: 3}
-  m_PrefabInstance: {fileID: 4498580734979175246}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6927827934475328955
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5026944014078174685}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22bec7bd1830348cf8173ee58e63a66b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  previous: 4
-  next: 0
-  screenMainContent: {fileID: 8916341064165609565}
-  renderMode: 0
-  screenSetupData: {fileID: 11400000, guid: 031b9fe499e524093826dc40dbec6650, type: 2}
-  sendButton: {fileID: 3785733557948887783}
-  uIElementsInputs: []
-  titleInputField: {fileID: 8985691886693525867}
-  contentTypesDropDown: {fileID: 772692027734478817}
-  categoriesDropDown: {fileID: 7998173574466426053}
-  versionInputField: {fileID: 3091458309890875635}
-  filePickerUIElement: {fileID: 6797328299709245087}
-  cancelButton: {fileID: 771971438080974156}
 --- !u!1 &8916341064165609565 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5031400036794671891, guid: 228187799f05d42f6a197778ba066f77, type: 3}

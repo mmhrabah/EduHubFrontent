@@ -9,8 +9,9 @@ namespace Rabah.Utils.UI
         ContentScreen,
         AddContentScreen,
         EditContentScreen,
-        CategoriesAndTypesScreen,
+        CategoriesScreen,
         AddCategoryScreen,
         EditCategoryScreen,
+        UserSubscriptionsScreen,
     }
 }

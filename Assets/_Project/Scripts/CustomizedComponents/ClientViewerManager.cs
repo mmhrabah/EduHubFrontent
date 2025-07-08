@@ -7,14 +7,14 @@ using UnityEngine;
 namespace Rabah.CustomizedComponents
 {
 
-    public class ContentViewerManager : MonoBehaviour
+    public class ClientViewerManager : MonoBehaviour
     {
         [SerializeField]
         private Transform userDetailsPrefabsParent;
         [SerializeField]
-        private ContentPrefabDataRaw contentDetailsPrefab;
+        private ClientPrefabDataRaw contentDetailsPrefab;
 
-        public void ShowContentDetails(List<Content> contents, Action<Content> onDeleteSuccess)
+        public void ShowClientDetails(List<Client> clients, Action<Client> onDeleteSuccess)
         {
             // Clear existing content details
             foreach (Transform child in userDetailsPrefabsParent)
@@ -23,10 +23,10 @@ namespace Rabah.CustomizedComponents
             }
 
             // Instantiate new content details
-            foreach (var content in contents)
+            foreach (var client in clients)
             {
-                var contentDetails = Instantiate(contentDetailsPrefab, userDetailsPrefabsParent);
-                contentDetails.SetContentItemDetails(content, onDeleteSuccess);
+                var clientDetails = Instantiate(contentDetailsPrefab, userDetailsPrefabsParent);
+                clientDetails.SetUserItemDetails(client, onDeleteSuccess);
             }
         }
     }
