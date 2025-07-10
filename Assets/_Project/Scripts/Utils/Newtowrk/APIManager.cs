@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine.Networking;
 using UnityEngine;
+using Rabah.Utils.Session;
 
 namespace Rabah.Utils.Network
 {
@@ -18,6 +19,10 @@ namespace Rabah.Utils.Network
         {
             baseUrl = networkData.baseURL;
             UnityWebRequest request = UnityWebRequest.Get(baseUrl + endpoint);
+            if (Session.Session.AccessToken != null && Session.Session.AccessToken != "")
+            {
+                request.SetRequestHeader("Authorization", "Bearer " + Session.Session.AccessToken);
+            }
             onSend?.Invoke();
             StartCoroutine(
                 SendRequest(
@@ -48,6 +53,10 @@ namespace Rabah.Utils.Network
             onSend?.Invoke();
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+            if (Session.Session.AccessToken != null && Session.Session.AccessToken != "")
+            {
+                request.SetRequestHeader("Authorization", "Bearer " + Session.Session.AccessToken);
+            }
             request.SetRequestHeader("Content-Type", "application/json");
             StartCoroutine(
                 SendRequest(
@@ -75,6 +84,10 @@ namespace Rabah.Utils.Network
             string jsonData = JsonConvert.SerializeObject(data);
             UnityWebRequest request = UnityWebRequest.Put(baseUrl + endpoint, jsonData);
             onSend?.Invoke();
+            if (Session.Session.AccessToken != null && Session.Session.AccessToken != "")
+            {
+                request.SetRequestHeader("Authorization", "Bearer " + Session.Session.AccessToken);
+            }
             request.SetRequestHeader("Content-Type", "application/json");
             StartCoroutine(
                 SendRequest(
@@ -100,6 +113,10 @@ namespace Rabah.Utils.Network
         {
             baseUrl = networkData.baseURL;
             UnityWebRequest request = UnityWebRequest.Delete(baseUrl + endpoint);
+            if (Session.Session.AccessToken != null && Session.Session.AccessToken != "")
+            {
+                request.SetRequestHeader("Authorization", "Bearer " + Session.Session.AccessToken);
+            }
             onSend?.Invoke();
             StartCoroutine(SendRequest(request, (response) =>
             {

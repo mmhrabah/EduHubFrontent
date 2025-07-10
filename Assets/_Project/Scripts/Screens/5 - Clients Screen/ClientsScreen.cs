@@ -19,7 +19,7 @@ namespace Rabah.Screens
             base.SetupLayout();
             UIManager.Instance.ResetWindowsRectData();
             UIManager.Instance.AddItemsToTopPanel(addNewClientButtonPanel, 4);
-            UIManager.Instance.LeftPanelButtonsManager.SelectButton(1);
+            UIManager.Instance.LeftPanelButtonsManager.SelectButton(3);
         }
         public override bool IsScreenDataValid()
         {
