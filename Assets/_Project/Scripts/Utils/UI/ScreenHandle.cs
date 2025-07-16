@@ -13,5 +13,6 @@ namespace Rabah.Utils.UI
         AddCategoryScreen,
         EditCategoryScreen,
         UserSubscriptionsScreen,
+        AddClientScreen,
     }
 }

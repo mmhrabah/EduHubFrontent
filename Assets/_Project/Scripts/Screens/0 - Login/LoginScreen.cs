@@ -94,35 +94,43 @@ namespace Rabah.Screens
         [ContextMenu("Play Login Animation")]
         private void PlayLoginAnimation()
         {
-            logosCanvasGroup.DOFade(1f, animationDuration)
+            // logosCanvasGroup.DOFade(1f, animationDuration)
+            //     .OnComplete(() =>
+            //     {
+            //         appLogoImage.transform.DOScale(1f, animationDuration)
+            //             .SetEase(animationEase)
+            //             .OnComplete(() =>
+            //             {
+            //                 companyLogoImage.transform.DOScale(1f, animationDuration)
+            //                     .SetEase(animationEase)
+            //                     .OnComplete(() =>
+            //                     {
+            //                         appLogoImage.DOFade(0f, animationDuration)
+            //                         .OnPlay(() =>
+            //                         {
+            //                             companyLogoImage.DOFade(0f, animationDuration)
+            //                                 .OnComplete(() =>
+            //                                 {
+            //                                     logosCanvasGroup.interactable = false;
+            //                                     logosCanvasGroup.blocksRaycasts = false;
+            //                                     loginContentCanvasGroup.DOFade(1f, animationDuration)
+            //                                         .OnComplete(() =>
+            //                                         {
+            //                                             loginContentCanvasGroup.interactable = true;
+            //                                             loginContentCanvasGroup.blocksRaycasts = true;
+            //                                         });
+            //                                 });
+            //                         });
+            //                     });
+            //             });
+            //     });
+            logosCanvasGroup.interactable = false;
+            logosCanvasGroup.blocksRaycasts = false;
+            loginContentCanvasGroup.DOFade(1f, animationDuration)
                 .OnComplete(() =>
                 {
-                    appLogoImage.transform.DOScale(1f, animationDuration)
-                        .SetEase(animationEase)
-                        .OnComplete(() =>
-                        {
-                            companyLogoImage.transform.DOScale(1f, animationDuration)
-                                .SetEase(animationEase)
-                                .OnComplete(() =>
-                                {
-                                    appLogoImage.DOFade(0f, animationDuration)
-                                    .OnPlay(() =>
-                                    {
-                                        companyLogoImage.DOFade(0f, animationDuration)
-                                            .OnComplete(() =>
-                                            {
-                                                logosCanvasGroup.interactable = false;
-                                                logosCanvasGroup.blocksRaycasts = false;
-                                                loginContentCanvasGroup.DOFade(1f, animationDuration)
-                                                    .OnComplete(() =>
-                                                    {
-                                                        loginContentCanvasGroup.interactable = true;
-                                                        loginContentCanvasGroup.blocksRaycasts = true;
-                                                    });
-                                            });
-                                    });
-                                });
-                        });
+                    loginContentCanvasGroup.interactable = true;
+                    loginContentCanvasGroup.blocksRaycasts = true;
                 });
         }
 

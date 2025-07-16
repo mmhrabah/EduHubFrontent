@@ -1790,10 +1790,10 @@ RectTransform:
   - {fileID: 5820730814195555383}
   m_Father: {fileID: 503763555150446226}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 28.93, y: -31.5}
-  m_SizeDelta: {x: 25, y: 57}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 25, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1210812231985203403
 GameObject:
@@ -3231,10 +3231,10 @@ RectTransform:
   - {fileID: 6752024672716643647}
   m_Father: {fileID: 4708071918575077136}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30.265, y: -36.5}
-  m_SizeDelta: {x: 25, y: 47}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 25, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1896190587436191704
 GameObject:
@@ -9812,6 +9812,8 @@ MonoBehaviour:
     prefab: {fileID: 6927827934475328955, guid: 22e4bcdd77c5448e098169f554066285, type: 3}
   - handle: 10
     prefab: {fileID: 1310017516131130320, guid: 453d58f35ff02453eafff7cf192ce336, type: 3}
+  - handle: 11
+    prefab: {fileID: -7375391079525869294, guid: b50bc15ad1d0f4a77b506a7b39ba0d3e, type: 3}
   backButton: {fileID: 9116886057717880879}
   resetButton: {fileID: 2603378530536848964}
   nextButton: {fileID: 3982850493722500203}
