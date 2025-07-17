@@ -47,7 +47,8 @@ namespace Rabah.Screens
                 Debug.LogError("EditClientScreenData or Client is null");
                 return;
             }
-
+            EndPoint = ScreenSetupData.mainEndpoint + editClientScreenData.Client.Id;
+            HttpMethod = HttpMethod.PUT;
             nameInputField.InputField.text = editClientScreenData.Client.Name;
             phoneUIElement.InputField.text = editClientScreenData.Client.Phone;
             if (editClientScreenData.Client.SubscriptionStartDate.Year < 2000 || editClientScreenData.Client.SubscriptionEndDate.Year < 2000)
@@ -90,18 +91,18 @@ namespace Rabah.Screens
                 Name = nameInputField.GetElementDataClassType<string>(),
                 Phone = phoneUIElement.GetElementDataClassType<string>(),
                 SubscriptionStartDate = DateTime.Parse(startDateInputField.GetElementDataClassType<string>()),
-                SubscriptionEndDate = DateTime.Parse(startDateInputField.GetElementDataClassType<string>()),
+                SubscriptionEndDate = DateTime.Parse(endDateInputField.GetElementDataClassType<string>()),
                 MacAddresses = macAdressesUIElement.GetElementDataClassType<string>().Split(',').ToList()
             };
         }
 
         protected override void FillUIElementsInputs()
         {
-            uIElementsInputs.Add(nameInputField);
-            uIElementsInputs.Add(phoneUIElement);
-            uIElementsInputs.Add(startDateInputField);
-            uIElementsInputs.Add(endDateInputField);
-            uIElementsInputs.Add(macAdressesUIElement);
+            // uIElementsInputs.Add(nameInputField);
+            // uIElementsInputs.Add(phoneUIElement);
+            // uIElementsInputs.Add(startDateInputField);
+            // uIElementsInputs.Add(endDateInputField);
+            // uIElementsInputs.Add(macAdressesUIElement);
         }
 
         public override void OnClose()

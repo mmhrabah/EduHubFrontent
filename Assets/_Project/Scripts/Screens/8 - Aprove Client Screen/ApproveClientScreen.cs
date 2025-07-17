@@ -47,6 +47,7 @@ namespace Rabah.Screens
                 Debug.LogError("ApproveClientScreenData or Client is null");
                 return;
             }
+            EndPoint = ScreenSetupData.mainEndpoint + approveClientScreenData.Client.Id;
 
             nameInputField.InputField.text = approveClientScreenData.Client.Name;
             phoneUIElement.InputField.text = approveClientScreenData.Client.Phone;
@@ -90,18 +91,18 @@ namespace Rabah.Screens
                 Name = nameInputField.GetElementDataClassType<string>(),
                 Phone = phoneUIElement.GetElementDataClassType<string>(),
                 SubscriptionStartDate = DateTime.Parse(startDateInputField.GetElementDataClassType<string>()),
-                SubscriptionEndDate = DateTime.Parse(startDateInputField.GetElementDataClassType<string>()),
+                SubscriptionEndDate = DateTime.Parse(endDateInputField.GetElementDataClassType<string>()),
                 MacAddresses = macAdressesUIElement.GetElementDataClassType<string>().Split(',').ToList()
             };
         }
 
         protected override void FillUIElementsInputs()
         {
-            uIElementsInputs.Add(nameInputField);
-            uIElementsInputs.Add(phoneUIElement);
-            uIElementsInputs.Add(startDateInputField);
-            uIElementsInputs.Add(endDateInputField);
-            uIElementsInputs.Add(macAdressesUIElement);
+            // uIElementsInputs.Add(nameInputField);
+            // uIElementsInputs.Add(phoneUIElement);
+            // uIElementsInputs.Add(startDateInputField);
+            // uIElementsInputs.Add(endDateInputField);
+            // uIElementsInputs.Add(macAdressesUIElement);
         }
 
         public override void OnClose()

@@ -26,6 +26,8 @@ namespace Rabah.Utils.UI
         protected List<UIElement> UIElementsInputs { get => uIElementsInputs; private set => uIElementsInputs = value; }
 
         protected virtual bool MustParse { get; set; } = true;
+        protected string EndPoint { get; set; }
+        protected HttpMethod HttpMethod { get; set; } = HttpMethod.POST;
         protected virtual void Awake()
         {
             sendButton.onClick.AddListener(OnSendButtonClicked);
@@ -34,33 +36,61 @@ namespace Rabah.Utils.UI
         public override void OnOpen(ScreenData data)
         {
             base.OnOpen(data);
+            EndPoint = ScreenSetupData.mainEndpoint;
             FillUIElementsInputs();
         }
 
         protected virtual void OnSendButtonClicked()
         {
+
             if (IsScreenDataValid())
             {
                 T data = ExtractDataFromInputs();
-                APIManager.Instance.Post<Y>(ScreenSetupData.mainEndpoint, data,
-                (response) =>
+                if (HttpMethod == HttpMethod.POST)
                 {
-                    onResponseReceived?.Invoke(response);
-                    UIManager.Instance.HideLoading();
-                },
-                (error) =>
+                    APIManager.Instance.Post<Y>(EndPoint, data,
+                    (response) =>
+                    {
+                        onResponseReceived?.Invoke(response);
+                        UIManager.Instance.HideLoading();
+                    },
+                    (error) =>
+                    {
+                        onErrorReceived?.Invoke(error);
+                        UIManager.Instance.HideLoading();
+                    },
+                    onSend: () =>
+                    {
+                        // Handle send action if needed
+                        UIManager.Instance.ShowLoading();
+                    },
+                    fixResponse: ScreenSetupData.fixedResponse,
+                    mustParse: MustParse
+                    );
+                }
+                else if (HttpMethod == HttpMethod.PUT)
                 {
-                    onErrorReceived?.Invoke(error);
-                    UIManager.Instance.HideLoading();
-                },
-                onSend: () =>
-                {
-                    // Handle send action if needed
-                    UIManager.Instance.ShowLoading();
-                },
-                fixResponse: ScreenSetupData.fixedResponse,
-                mustParse: MustParse
-                );
+                    APIManager.Instance.Put<Y>(EndPoint, data,
+                    (response) =>
+                    {
+                        onResponseReceived?.Invoke(response);
+                        UIManager.Instance.HideLoading();
+                    },
+                    (error) =>
+                    {
+                        onErrorReceived?.Invoke(error);
+                        UIManager.Instance.HideLoading();
+                    },
+                    onSend: () =>
+                    {
+                        // Handle send action if needed
+                        UIManager.Instance.ShowLoading();
+                    },
+                    fixResponse: ScreenSetupData.fixedResponse,
+                    mustParse: MustParse
+                    );
+                }
+                else Debug.LogError("HttpMethod is not set or is invalid.");
             }
             else
             {

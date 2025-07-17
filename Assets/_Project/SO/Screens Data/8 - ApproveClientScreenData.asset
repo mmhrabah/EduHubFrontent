@@ -28,4 +28,4 @@ MonoBehaviour:
   fixedResponse: 1
   renderMode: 0
   screenHandle: 13
-  mainEndpoint: Admin/ApproveUser
+  mainEndpoint: Admin/ApproveUser/
