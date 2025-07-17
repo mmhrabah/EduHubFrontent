@@ -1,5 +1,6 @@
 using System;
 using Rabah.GeneralDataModel;
+using Rabah.Screens;
 using Rabah.Utils.Network;
 using Rabah.Utils.UI;
 using TMPro;
@@ -34,29 +35,22 @@ namespace Rabah.PrefabRaw
 
         private void OnEditButtonClicked()
         {
-            // UIManager.Instance.OpenScreen<EditContentScreen>(new EditContentScreenData
-            // {
-            //     user = user
-            // });
-            UIManager.Instance.ShowComingSoonModal();
+            var nextSscreen = client.Status == UserStatus.Pending
+                ? ScreenHandle.ApproveClientScreen
+                : ScreenHandle.EditClientScreen;
+
+            ScreenData nextScreenData = null;
+            nextScreenData = nextSscreen == ScreenHandle.ApproveClientScreen
+                ? new ApproveClientScreenData { Client = client }
+                : new EditClientScreenData { Client = client };
+            UIManager.Instance.OpenScreen(
+                nextSscreen,
+                data: nextScreenData);
+            // UIManager.Instance.ShowComingSoonModal();
         }
 
         private void OnDeleteButtonClicked()
         {
-            // APIManager.Instance.Delete<string>($"content/{content.Id}",
-            //     onSuccess: (response) =>
-            //     {
-            //         Debug.Log("Content deleted successfully.");
-            //         onDeleteSuccess?.Invoke(content);
-            //     },
-            //     onFailure: (error) =>
-            //     {
-            //         Debug.LogError($"Failed to delete content: {error}");
-            //         UIManager.Instance.ShowNotificationModal(
-            //             title: "Error",
-            //             descriptionText: error,
-            //             icon: null);
-            //     });
             UIManager.Instance.ShowComingSoonModal();
         }
 
@@ -64,9 +58,24 @@ namespace Rabah.PrefabRaw
         {
             this.client = client;
             usernameText.text = client.Name;
-            startDateText.text = client.SubscriptionStartDate.ToString("yyyy-MM-dd");
-            endDataText.text = client.SubscriptionEndDate.ToString("yyyy-MM-dd");
-            subscriptionStatusText.text = client.GetSubscriptionStatusText();
+            if (client.SubscriptionStartDate.Year < 2000 || client.SubscriptionEndDate.Year < 2000)
+            {
+                startDateText.text = "N/A";
+                endDataText.text = "N/A";
+            }
+            else
+            {
+                startDateText.text = client.SubscriptionStartDate.ToString("yyyy-MM-dd");
+                endDataText.text = client.SubscriptionEndDate.ToString("yyyy-MM-dd");
+            }
+            if (client.Status == UserStatus.Registered)
+            {
+                subscriptionStatusText.text = client.GetSubscriptionStatusText();
+            }
+            else
+            {
+                subscriptionStatusText.text = client.Status.ToString();
+            }
             this.onDeleteSuccess = onDeleteSuccess;
         }
     }
