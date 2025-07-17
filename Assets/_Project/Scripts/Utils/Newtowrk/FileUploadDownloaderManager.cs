@@ -34,7 +34,7 @@ namespace Rabah.Utils.Network
                 form.AddBinaryData("file", fileData, Path.GetFileName(filePath), GetMimeType(filePath));
 
                 UnityWebRequest www = UnityWebRequest.Post(networkData.uploadUrl, form);
-                // www.SetRequestHeader("Authorization", "Bearer " + Session.Session.AccessToken);
+                www.SetRequestHeader("Authorization", "Bearer " + Session.Session.AccessToken);
 
                 // Wait for the request to complete
                 yield return www.SendWebRequest();
