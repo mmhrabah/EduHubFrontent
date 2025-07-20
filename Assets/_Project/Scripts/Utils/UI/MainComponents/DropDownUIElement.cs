@@ -11,6 +11,9 @@ namespace Rabah.UI.MainComponents
         [SerializeField]
         private TMP_Text mainText;
         private CustomDropdown dropdown;
+
+        protected TMP_Text MainText { get => mainText; set => mainText = value; }
+
         protected virtual void Awake()
         {
             dropdown = GetComponent<CustomDropdown>();
@@ -46,7 +49,7 @@ namespace Rabah.UI.MainComponents
 
         public virtual void ResetSelectedText()
         {
-            mainText.text = string.Empty;
+            MainText.text = string.Empty;
         }
 
         public override T GetElementDataClassType<T>()

@@ -98,11 +98,7 @@ namespace Rabah.Screens
 
         protected override void FillUIElementsInputs()
         {
-            // uIElementsInputs.Add(nameInputField);
-            // uIElementsInputs.Add(phoneUIElement);
-            // uIElementsInputs.Add(startDateInputField);
-            // uIElementsInputs.Add(endDateInputField);
-            // uIElementsInputs.Add(macAdressesUIElement);
+
         }
 
         public override void OnClose()

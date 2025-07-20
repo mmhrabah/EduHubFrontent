@@ -160,7 +160,10 @@ namespace Rabah.Utils.Network
                 }
                 else
                 {
-                    Debug.Log("Request successful, but not parsing response: " + request.downloadHandler.text);
+                    if (request.downloadHandler != null && request.downloadHandler.text != null)
+                        Debug.Log("Request successful, but not parsing response: " + request.downloadHandler.text);
+                    else
+                        Debug.Log("Request successful, but no response to parse.");
                     onSuccess?.Invoke(default); // If mustParse is false, we just invoke onSuccess with a default value
                 }
             }

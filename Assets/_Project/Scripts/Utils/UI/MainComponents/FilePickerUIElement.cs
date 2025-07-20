@@ -84,5 +84,11 @@ namespace Rabah.UI.MainComponents
                     FileBrowser.Instance.OnOpenFilesComplete -= onOpenFilesComplete;
             }
         }
+
+        public void SetSelectedFile(string filePath)
+        {
+            this.filePath = filePath;
+            fileNameText.text = System.IO.Path.GetFileName(filePath);
+        }
     }
 }

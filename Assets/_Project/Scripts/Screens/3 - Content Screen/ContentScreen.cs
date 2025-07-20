@@ -28,23 +28,9 @@ namespace Rabah.Screens
 
         protected override void OnDataFetched(ResponseModel<List<Content>> response)
         {
-            contentViewerManager.ShowContentDetails(response.Data, (content) =>
+            contentViewerManager.ShowContentDetails(response.Data, (c) =>
             {
-                // Handle content deletion success
-                APIManager.Instance.Delete<string>($"content/{content.Id}",
-                    onSuccess: (deleteResponse) =>
-                    {
-                        Debug.Log("Content deleted successfully.");
-                        contentViewerManager.ShowContentDetails(response.Data, null);
-                    },
-                    onFailure: (error) =>
-                    {
-                        Debug.LogError($"Failed to delete content: {error}");
-                        UIManager.Instance.ShowNotificationModal(
-                            title: "Error",
-                            descriptionText: error,
-                            icon: null);
-                    });
+                UIManager.Instance.OpenScreen(ScreenHandle.ContentScreen);
             });
             foreach (var content in response.Data)
             {

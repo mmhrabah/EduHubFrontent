@@ -51,7 +51,22 @@ namespace Rabah.PrefabRaw
 
         private void OnDeleteButtonClicked()
         {
-            UIManager.Instance.ShowComingSoonModal();
+            APIManager.Instance.Delete<string>($"user/{client.Id}",
+                onSuccess: (response) =>
+                {
+                    Debug.Log("Client deleted successfully.");
+                    onDeleteSuccess?.Invoke(client);
+                },
+                onFailure: (error) =>
+                {
+                    Debug.LogError($"Failed to delete client: {error}");
+                    UIManager.Instance.ShowNotificationModal(
+                        title: "Error",
+                        descriptionText: error,
+                        icon: null);
+                },
+                mustParse: false);
+            // UIManager.Instance.ShowComingSoonModal();
         }
 
         public void SetUserItemDetails(Client client, Action<Client> onDeleteSuccess)

@@ -65,24 +65,9 @@ namespace Rabah.Screens
             totalContentItemsText.text = response.Data.totalContentItems.ToString();
             activeSubscriptionsText.text = response.Data.activeSubscriptions.ToString();
             contentAddedThisMonthText.text = response.Data.contentAddedThisMonth.ToString();
-            contentViewerManager.ShowContentDetails(response.Data.recentlyAddedContent, (content) =>
+            contentViewerManager.ShowContentDetails(response.Data.recentlyAddedContent, (c) =>
             {
-                // Handle content deletion success
-                APIManager.Instance.Delete<string>($"content/{content.Id}",
-                    onSuccess: (deleteResponse) =>
-                    {
-                        Debug.Log("Content deleted successfully.");
-                        contentViewerManager.ShowContentDetails(response.Data.recentlyAddedContent, null);
-                    },
-                    onFailure: (error) =>
-                    {
-                        Debug.LogError($"Failed to delete content: {error}");
-                        UIManager.Instance.ShowNotificationModal(
-                            title: "Error",
-                            descriptionText: error,
-                            icon: warningIcon,
-                            iconColor: Color.red);
-                    });
+                UIManager.Instance.OpenScreen(ScreenHandle.ContentScreen);
             });
             foreach (var contentType in response.Data.contentTypes)
             {

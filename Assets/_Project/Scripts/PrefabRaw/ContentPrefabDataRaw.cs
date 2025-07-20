@@ -1,5 +1,6 @@
 using System;
 using Rabah.GeneralDataModel;
+using Rabah.Screens;
 using Rabah.Utils.Network;
 using Rabah.Utils.UI;
 using TMPro;
@@ -32,30 +33,38 @@ namespace Rabah.PrefabRaw
 
         private void OnEditButtonClicked()
         {
-            // UIManager.Instance.OpenScreen<EditContentScreen>(new EditContentScreenData
-            // {
-            //     content = content
-            // });
-            UIManager.Instance.ShowComingSoonModal();
+            UIManager.Instance.OpenScreen(ScreenHandle.EditContentScreen,
+            data: new EditContentScreenData
+            {
+                Content = content
+            });
+            // UIManager.Instance.ShowComingSoonModal();
         }
 
         private void OnDeleteButtonClicked()
         {
-            // APIManager.Instance.Delete<string>($"content/{content.Id}",
-            //     onSuccess: (response) =>
-            //     {
-            //         Debug.Log("Content deleted successfully.");
-            //         onDeleteSuccess?.Invoke(content);
-            //     },
-            //     onFailure: (error) =>
-            //     {
-            //         Debug.LogError($"Failed to delete content: {error}");
-            //         UIManager.Instance.ShowNotificationModal(
-            //             title: "Error",
-            //             descriptionText: error,
-            //             icon: null);
-            //     });
-            UIManager.Instance.ShowComingSoonModal();
+            APIManager.Instance.Delete<string>($"content/{content.Id}",
+                onSend: () =>
+                {
+                    UIManager.Instance.ShowLoading();
+                },
+                onSuccess: (response) =>
+                {
+                    Debug.Log("Content deleted successfully.");
+                    UIManager.Instance.HideLoading();
+                    onDeleteSuccess?.Invoke(content);
+                },
+                onFailure: (error) =>
+                {
+                    Debug.LogError($"Failed to delete content: {error}");
+                    UIManager.Instance.HideLoading();
+                    UIManager.Instance.ShowNotificationModal(
+                        title: "Error",
+                        descriptionText: error,
+                        icon: null);
+                },
+                mustParse: false);
+            // UIManager.Instance.ShowComingSoonModal();
         }
 
         public void SetContentItemDetails(Content content, Action<Content> onDeleteSuccess)

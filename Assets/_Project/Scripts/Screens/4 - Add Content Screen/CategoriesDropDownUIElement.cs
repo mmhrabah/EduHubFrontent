@@ -4,6 +4,7 @@ using System.Linq;
 using Rabah.GeneralDataModel;
 using Rabah.UI.MainComponents;
 using Rabah.Utils.Session;
+using TMPro;
 using UnityEngine;
 
 namespace Rabah.Screens
@@ -33,6 +34,7 @@ namespace Rabah.Screens
         {
             selectedCategory = Session.Categories[index];
             var selectedItemName = selectedCategory.Name;
+            MainText.text = selectedItemName;
             Debug.Log($"Selected content type: {selectedItemName}");
         }
 

@@ -1,12 +1,12 @@
 using System;
+using System.Collections.Generic;
 
 namespace Rabah.Screens
 {
     [Serializable]
-    public class AddContentRequest : RequestModel
+    public class EditContentRequest : RequestModel
     {
         public string Name { get; set; }
-        public string Title { get; set; }
         public string Description { get; set; }
         public string ImageUrl { get; set; }
         public Guid TypeId { get; set; }
