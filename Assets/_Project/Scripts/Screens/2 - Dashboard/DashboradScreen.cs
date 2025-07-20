@@ -29,6 +29,8 @@ namespace Rabah.Screens
         [SerializeField]
         private TMP_Text contentAddedThisMonthText;
         [SerializeField]
+        private TMP_Text pendingClientsText;
+        [SerializeField]
         private ContentViewerManager contentViewerManager;
 
         #endregion
@@ -65,6 +67,7 @@ namespace Rabah.Screens
             totalContentItemsText.text = response.Data.totalContentItems.ToString();
             activeSubscriptionsText.text = response.Data.activeSubscriptions.ToString();
             contentAddedThisMonthText.text = response.Data.contentAddedThisMonth.ToString();
+            pendingClientsText.text = response.Data.pendingUsers.ToString();
             contentViewerManager.ShowContentDetails(response.Data.recentlyAddedContent, (c) =>
             {
                 UIManager.Instance.OpenScreen(ScreenHandle.ContentScreen);

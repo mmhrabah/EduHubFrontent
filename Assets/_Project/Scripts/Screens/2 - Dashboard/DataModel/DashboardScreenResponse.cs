@@ -10,6 +10,7 @@ namespace Rabah.Screens
         public int totalContentItems;
         public int activeSubscriptions;
         public int contentAddedThisMonth;
+        public int pendingUsers;
         public List<Content> recentlyAddedContent;
         public List<ContentType> contentTypes;
         public List<Category> categories;
