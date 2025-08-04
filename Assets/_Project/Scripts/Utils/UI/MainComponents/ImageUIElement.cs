@@ -17,14 +17,13 @@ namespace Rabah.UI.MainComponents
         private ButtonManager selectImageButton;
         private string Extension = "png,jpg,jpeg";
         private string filePath = "";
+        private Action onImageSelected;
+
+        public Action OnImageSelected { get => onImageSelected; set => onImageSelected = value; }
 
         private void Awake()
         {
             selectImageButton.onClick.AddListener(OpenFile);
-        }
-        private void OnEnable()
-        {
-            FileBrowser.Instance.OnOpenFilesComplete += onOpenFilesComplete;
         }
 
         private void OnDisable()
@@ -35,24 +34,25 @@ namespace Rabah.UI.MainComponents
 
         public void OpenFile()
         {
+            if (FileBrowser.Instance != null)
+                FileBrowser.Instance.OnOpenFilesComplete += onOpenFilesComplete;
             FileBrowser.Instance.OpenSingleFileAsync(Extension);
         }
 
         private void onOpenFilesComplete(bool selected, string singlefile, string[] files)
         {
-            UIManager.Instance.ShowLoading();
-            StartCoroutine(FileUploadDownloaderManager.Instance.UploadFile(singlefile,
-                    (url) =>
-                    {
-                        Debug.Log("File uploaded successfully: " + url);
-                        filePath = url;
-                        UIManager.Instance.HideLoading();
-                    },
-                    (error) =>
-                    {
-                        UIManager.Instance.HideLoading();
-                        Debug.LogError("File upload failed: " + error);
-                    }));
+            if (FileBrowser.Instance != null)
+                FileBrowser.Instance.OnOpenFilesComplete -= onOpenFilesComplete;
+            if (selected && !string.IsNullOrEmpty(singlefile))
+            {
+                filePath = singlefile;
+                SetImage(System.IO.File.ReadAllBytes(filePath));
+                OnImageSelected?.Invoke();
+            }
+            else
+            {
+                Debug.LogWarning("No file selected or file path is empty.");
+            }
         }
 
         public override T GetElementDataClassType<T>()
@@ -87,6 +87,7 @@ namespace Rabah.UI.MainComponents
             {
                 FileBrowser.Instance.OnOpenFilesComplete -= onOpenFilesComplete;
             }
+            image.sprite = null;
         }
 
         public void SetImage(byte[] imageBytes)

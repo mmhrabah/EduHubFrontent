@@ -16,19 +16,16 @@ namespace Rabah.Screens
         {
             base.Awake();
             SetDefinitionDropDownData(Session.ContentTypes);
-            if (Session.ContentTypes.Count > 0)
-            {
-                OnSelectItem(0);
-            }
         }
         public override void SetDefinitionDropDownData<T>(T data)
         {
             base.SetDefinitionDropDownData(data);
-            List<string> categoryNames = Session.ContentTypes.Select(c => c.Name).ToList();
-            foreach (var item in categoryNames)
+            List<string> contentTypeNames = Session.ContentTypes.Select(c => c.Name).ToList();
+            foreach (var item in contentTypeNames)
             {
                 AddDropdownItem(item);
             }
+            Dropdown.Interactable(false);
         }
         public override void OnSelectItem(int index)
         {

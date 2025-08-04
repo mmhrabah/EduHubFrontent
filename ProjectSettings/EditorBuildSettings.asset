@@ -11,6 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Project/Scenes/2 - MainScene.unity
     guid: 95bd7fe3f34ff420f85d4993bac3f277
+  - enabled: 1
+    path: Assets/GUIPack-Clean&Minimalist/Demo/Scenes/Demo/Demo.unity
+    guid: d82d5deb2fb554889b365029cce103fb
+  - enabled: 1
+    path: Assets/GUIPack-Clean&Minimalist/Demo/Scenes/Themes/Dark/Dark - Home.unity
+    guid: 68c3b27ea42954caab63ca4b921ad14d
+  - enabled: 1
+    path: Assets/GUIPack-Clean&Minimalist/Demo/Scenes/Themes/Dark/Dark - Game.unity
+    guid: 3e961f553cad04680b4e67a97dbaf86a
+  - enabled: 1
+    path: Assets/GUIPack-Clean&Minimalist/Demo/Scenes/Themes/Light/Light - Game.unity
+    guid: ed69d3f9b5a8e446896934f79e173d08
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

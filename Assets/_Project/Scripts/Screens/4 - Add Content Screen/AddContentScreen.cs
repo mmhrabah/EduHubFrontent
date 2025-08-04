@@ -2,6 +2,7 @@ using System;
 using Michsky.MUIP;
 using Rabah.UI.MainComponents;
 using Rabah.Utils.Network;
+using Rabah.Utils.Session;
 using Rabah.Utils.UI;
 using UnityEngine;
 using UIManager = Rabah.Utils.UI.UIManager;
@@ -23,13 +24,45 @@ namespace Rabah.Screens
         [SerializeField]
         private FilePickerUIElement filePickerUIElement;
         [SerializeField]
+        private ImageUIElement contentCoverImageUIElement;
+        [SerializeField]
         private ButtonManager cancelButton;
+        [SerializeField]
+        private ButtonManager clearImageButton;
+        [SerializeField]
+        private ButtonManager selectCoverButton;
 
-
+        private string coverURL = string.Empty;
         protected override void Awake()
         {
             base.Awake();
-            MustParse = false; // We don't need to parse the response in this case
+            MustParse = false;
+            contentCoverImageUIElement.OnImageSelected += () =>
+            {
+                clearImageButton.gameObject.SetActive(true);
+                selectCoverButton.gameObject.SetActive(false);
+                UIManager.Instance.ShowLoading();
+                var filePath = contentCoverImageUIElement.GetElementDataClassType<string>();
+                StartCoroutine(FileUploadDownloaderManager.Instance.UploadFile(filePath,
+                        (url) =>
+                        {
+                            Debug.Log("File uploaded successfully: " + url);
+                            coverURL = url;
+                            UIManager.Instance.HideLoading();
+                        },
+                        (error) =>
+                        {
+                            UIManager.Instance.HideLoading();
+                            Debug.LogError("File upload failed: " + error);
+                        }));
+            };
+            clearImageButton.onClick.AddListener(() =>
+            {
+                contentCoverImageUIElement.ResetElement();
+                clearImageButton.gameObject.SetActive(false);
+                selectCoverButton.gameObject.SetActive(true);
+                coverURL = string.Empty;
+            });
         }
         public override void SetupLayout()
         {
@@ -58,6 +91,9 @@ namespace Rabah.Screens
             {
                 UIManager.Instance.OpenScreen(ScreenHandle.ContentScreen);
             };
+            var selectedContentType = Session.ContentTypes.Find(x => x.FileExtension == "ePub");
+            var index = Session.ContentTypes.IndexOf(selectedContentType);
+            contentTypesDropDown.OnSelectItem(index);
         }
 
         protected override AddContentRequest ExtractDataFromInputs()
@@ -66,7 +102,7 @@ namespace Rabah.Screens
             {
                 Name = titleInputField.GetElementDataClassType<string>(),
                 Description = string.Empty,
-                ImageUrl = string.Empty,
+                ImageUrl = coverURL,
                 Author = string.Empty,
                 Publisher = "Nahdet Misr Publishing Group",
                 TypeId = contentTypesDropDown.GetElementDataStructType<Guid>(),

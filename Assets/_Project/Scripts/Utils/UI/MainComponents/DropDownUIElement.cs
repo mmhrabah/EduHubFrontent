@@ -13,11 +13,12 @@ namespace Rabah.UI.MainComponents
         private CustomDropdown dropdown;
 
         protected TMP_Text MainText { get => mainText; set => mainText = value; }
+        protected CustomDropdown Dropdown { get => dropdown; set => dropdown = value; }
 
         protected virtual void Awake()
         {
-            dropdown = GetComponent<CustomDropdown>();
-            dropdown.onValueChanged.AddListener(OnSelectItem);
+            Dropdown = GetComponent<CustomDropdown>();
+            Dropdown.onValueChanged.AddListener(OnSelectItem);
         }
 
         public override bool IsValid()
@@ -27,24 +28,24 @@ namespace Rabah.UI.MainComponents
 
         public override void ResetElement()
         {
-            dropdown.SetDropdownIndex(0);
+            Dropdown.SetDropdownIndex(0);
         }
 
         public void AddDropdownItem(string newItem)
         {
-            dropdown.CreateNewItem(newItem);
-            dropdown.SetupDropdown();
+            Dropdown.CreateNewItem(newItem);
+            Dropdown.SetupDropdown();
         }
 
         public virtual void RemoveDrpoDownItem(string title, bool isNotify)
         {
-            dropdown.RemoveItem(title, isNotify);
+            Dropdown.RemoveItem(title, isNotify);
         }
 
         public virtual void RemoveAllDrpoDownItems()
         {
-            dropdown.items.Clear();
-            dropdown.SetupDropdown();
+            Dropdown.items.Clear();
+            Dropdown.SetupDropdown();
         }
 
         public virtual void ResetSelectedText()

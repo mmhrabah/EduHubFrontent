@@ -17,11 +17,6 @@ namespace Rabah.UI.MainComponents
         private string filePath = "";
 
 
-        private void OnEnable()
-        {
-            FileBrowser.Instance.OnOpenFilesComplete += onOpenFilesComplete;
-        }
-
         private void OnDisable()
         {
             if (FileBrowser.Instance != null)
@@ -30,10 +25,14 @@ namespace Rabah.UI.MainComponents
 
         public void OpenFile()
         {
+            if (FileBrowser.Instance != null)
+                FileBrowser.Instance.OnOpenFilesComplete += onOpenFilesComplete;
             FileBrowser.Instance.OpenSingleFileAsync(Extension);
         }
         private void onOpenFilesComplete(bool selected, string singlefile, string[] files)
         {
+            if (FileBrowser.Instance != null)
+                FileBrowser.Instance.OnOpenFilesComplete -= onOpenFilesComplete;
             fileNameText.text = selected ? singlefile : "No file selected";
             UIManager.Instance.ShowLoading();
             StartCoroutine(FileUploadDownloaderManager.Instance.UploadFile(singlefile,
