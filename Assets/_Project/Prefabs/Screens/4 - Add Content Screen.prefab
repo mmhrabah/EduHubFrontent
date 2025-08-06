@@ -6198,6 +6198,7 @@ GameObject:
   - component: {fileID: 1150457260481359029}
   - component: {fileID: 5560102223929399607}
   - component: {fileID: 6797328299709245087}
+  - component: {fileID: 2968134902860217047}
   m_Layer: 5
   m_Name: Content File Panel
   m_TagString: Untagged
@@ -6304,6 +6305,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Extension: '*'
   fileNameText: {fileID: 5254705849818030964}
+  zipWithPassword: {fileID: 2968134902860217047}
+--- !u!114 &2968134902860217047
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4368516350366852715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b1c8f52106ca4a04bf47e21afbcede1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4502555635584280229
 GameObject:
   m_ObjectHideFlags: 0
